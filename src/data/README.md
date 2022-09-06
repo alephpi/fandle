@@ -1,13 +1,10 @@
 # Sources
 
-## `idioms.txt` / `polyphones.json`
+## `总成语表.json`
 
-Processed from https://github.com/pwxcoo/chinese-xinhua/blob/master/data/idiom.json
+See https://github.com/alephpi/idiom-dictionary
 
 ## `t2s.json`
 
 Processed from https://github.com/mollykannn/translate-big5-gbk.git
 
-## `extra.json`
-
-From users' input

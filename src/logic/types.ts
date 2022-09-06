@@ -1,23 +1,19 @@
-export type MatchType = 'exact' | 'misplaced' | 'none' | 'deleted'
-
-export type InputMode = 'py' | 'zy' | 'sp'
+export type MatchType = 'matchAll' | 'match2' | 'match1' | 'miss'
 
 export interface ParsedChar {
   char: string
-  _1: string
-  _2?: string
-  _3?: string
-  parts: string[]
+  _shengmu: string
+  _yunmu: string
+  _diao: string
   yin: string
-  tone: number
 }
 
 export interface MatchResult {
-  char: MatchType
-  _1: MatchType
-  _2: MatchType
-  _3: MatchType
-  tone: MatchType
+  // char: MatchType
+  _shengmu: boolean
+  _yunmu: boolean
+  _diao: boolean
+  yin: MatchType
 }
 
 export interface TriesMeta {

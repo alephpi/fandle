@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid'
 import axios from 'axios'
 import { dayNo } from './state'
-import { acceptCollecting, history, inputMode } from './storage'
+import { acceptCollecting, history } from './storage'
 import { DEPLOY_HOST, NETLIFY_FUNCTION_HOST } from './logic/constants'
 import type { TriesMeta } from './logic'
 
@@ -23,7 +23,6 @@ export function preparePayload(day: number, meta: TriesMeta) {
     id: `${_uid}-${day}`,
     uid: _uid,
     day,
-    inputMode: inputMode.value,
     tries: tries?.join(','),
     triesCount: tries?.length,
     ...rest,

@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { getShuangpinConstants, pinyinFinals, pinyinInitials, zhuyinSymbols } from '@hankit/tools'
-import { inputMode, spMode } from '~/storage'
-import { t } from '~/i18n'
-import { getSymbolState, showCheatSheet } from '~/state'
+// import { getShuangpinConstants, pinyinFinals, pinyinInitials, zhuyinSymbols } from '@hankit/tools'
+// import { inputMode, spMode } from '~/storage'
+// import { t } from '~/i18n'
+// import { getSymbolState, showCheatSheet } from '~/state'
 
-function getSymbolClass(symbol: string, key?: '_1' | '_2') {
-  const state = getSymbolState(symbol, key)
-  if (!state)
-    return ''
-  return ({
-    exact: 'text-ok',
-    misplaced: 'text-mis',
-    none: 'op30',
-  })[state]
-}
+// function getSymbolClass(symbol: string, key?: '_1' | '_2') {
+//   const state = getSymbolState(symbol, key)
+//   if (!state)
+//     return ''
+//   return ({
+//     exact: 'text-ok',
+//     misplaced: 'text-mis',
+//     none: 'op30',
+//   })[state]
+// }
 
-function close() {
-  showCheatSheet.value = false
-}
+// function close() {
+//   showCheatSheet.value = false
+// }
 
-const modeText = computed(() => ({
-  py: t('pinyin'),
-  sp: t('shuangpin'),
-  zy: t('zhuyin'),
-}[inputMode.value]))
+// const modeText = computed(() => ({
+//   py: t('pinyin'),
+//   sp: t('shuangpin'),
+//   zy: t('zhuyin'),
+// }[inputMode.value]))
 
-const spConstants = computed(() => getShuangpinConstants(spMode.value))
+// const spConstants = computed(() => getShuangpinConstants(spMode.value))
 </script>
 
 <template>
@@ -40,20 +40,13 @@ const spConstants = computed(() => getShuangpinConstants(spMode.value))
       <b>{{ modeText }}{{ t('cheatsheet') }}</b>
     </p>
     <!-- Zhuyin -->
-    <div
-      v-if="inputMode === 'zy'"
-      grid="~ cols-6 center"
-    >
+    <div v-if="inputMode === 'zy'" grid="~ cols-6 center">
       <div v-for="s of zhuyinSymbols" :key="s" text-2xl font-serif w-12 h-12 :class="getSymbolClass(s)">
         {{ s }}
       </div>
     </div>
     <!-- Shuangpin -->
-    <div
-      v-else-if="inputMode === 'sp'"
-      grid="~ cols-[1fr_1fr] gap-x-10 gap-y-4"
-      font-mono font-light
-    >
+    <div v-else-if="inputMode === 'sp'" grid="~ cols-[1fr_1fr] gap-x-10 gap-y-4" font-mono font-light>
       <div text-center>
         {{ t('initials') }}
       </div>
@@ -72,11 +65,7 @@ const spConstants = computed(() => getShuangpinConstants(spMode.value))
       </div>
     </div>
     <!-- Pinyin -->
-    <div
-      v-else
-      grid="~ cols-[1fr_3fr] gap-x-10 gap-y-4"
-      font-mono font-light
-    >
+    <div v-else grid="~ cols-[1fr_3fr] gap-x-10 gap-y-4" font-mono font-light>
       <div text-center>
         {{ t('initials') }}
       </div>

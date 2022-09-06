@@ -14,8 +14,15 @@ html.dark {
   --c-primary: #0d828e;
   --c-primary-deep: #08606a;
   --c-ok: #1d9c9c;
+  /* 青 */
+  --c-match-all: #00e09e;
+  /* 黄 */
+  --c-match-2: #d6a01d;
+  /* 赤 */
+  --c-match-1: #c3272b;
   --c-mis: #de7525;
 }
+
 .dark {
   --c-ok: #0d8e8e;
 }
@@ -25,9 +32,9 @@ p {
 }
 
 .colorblind {
-  --c-ok:#5ba554;
+  --c-ok: #5ba554;
   --c-mis: #ff46ff;
-  --c-primary:#5ba554;
+  --c-primary: #5ba554;
 }
 
 ul {
@@ -38,6 +45,7 @@ ul {
 .fade-in-enter-active {
   transition: all 1s ease;
 }
+
 .fade-out-leave-active {
   transition: all 0.5s ease;
 }
@@ -57,18 +65,23 @@ ul {
   0% {
     transform: translate(1px);
   }
+
   20% {
     transform: translate(-2px);
   }
+
   40% {
     transform: translate(2px);
   }
+
   60% {
     transform: translate(-2px);
   }
+
   80% {
     transform: translate(2px);
   }
+
   100% {
     transform: translate(-1px);
   }

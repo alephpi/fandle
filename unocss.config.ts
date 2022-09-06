@@ -29,6 +29,11 @@ export default defineConfig({
   ],
   theme: <Theme>{
     colors: {
+      'match': {
+        all: 'var(--c-match-all)',
+        2: 'var(--c-match-2)',
+        1: 'var(--c-match-1)',
+      },
       'ok': 'var(--c-ok)',
       'primary': 'var(--c-primary)',
       'primary-deep': 'var(--c-primary-deep)',
