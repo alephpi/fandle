@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import { parseWord, parsedAnswer, testAnswer, answer as todayAnswer } from '~/state'
-import { WORD_LENGTH } from '~/logic'
+import { WORD_LENGTH, parseAnswer } from '~/logic'
 
 const props = withDefaults(
   defineProps<{
     word: string
     revealed?: boolean
-    answer?: string
+    answer?: string // served for WelcomePage.vue to show examples, not served for play.vue
     animate?: boolean
     active?: boolean
   }>(), {
-    animate: true,
-  },
+  animate: true,
+},
 )
 
 const result = computed(() => {
   if (props.revealed) {
     return testAnswer(
       parseWord(props.word),
-      props.answer ? parseWord(props.answer) : parsedAnswer.value,
+      props.answer ? parseAnswer(props.answer) : parsedAnswer.value,
     )
   }
   return []
@@ -35,36 +35,23 @@ watchEffect(() => {
 })
 </script>
 
+<!-- eslint-disable vue/first-attribute-linebreak -->
+<!-- eslint-disable vue/html-indent -->
+<!-- eslint-disable vue/html-closing-bracket-newline -->
 <template>
   <div flex>
-    <div
-      v-for="c,i in parseWord(word.padEnd(WORD_LENGTH, ' '), answer || todayAnswer.word)" :key="i"
-      w-20 h-20 m1
-      :class="['tile', flip ? 'revealed': '']"
-    >
+    <div v-for="c, i in parseWord(word.padEnd(WORD_LENGTH, ' '), answer || todayAnswer.word)" :key="i" w-20 h-20 m1
+      class="tile" :class="[flip ? 'revealed' : '']">
       <template v-if="animate">
-        <CharBlock
-          class="front"
-          :char="c"
-          :active="active"
-          :style="{ transitionDelay: `${i * (300 + Math.random() * 50)}ms` }"
-        />
-        <CharBlock
-          class="back"
-          :char="c"
-          :answer="result[i]"
-          :style="{
-            transitionDelay: `${i * (300 + Math.random() * 50)}ms`,
-            animationDelay: `${i * (100 + Math.random() * 50)}ms`
-          }"
-        />
+        <CharBlock class="front" :char="c" :active="active"
+          :style="{ transitionDelay: `${i * (300 + Math.random() * 50)}ms` }" />
+        <CharBlock class="back" :char="c" :answer="result[i]" :style="{
+          transitionDelay: `${i * (300 + Math.random() * 50)}ms`,
+          animationDelay: `${i * (100 + Math.random() * 50)}ms`,
+        }" />
       </template>
       <template v-else>
-        <CharBlock
-          :char="c"
-          :answer="result[i]"
-          :active="active"
-        />
+        <CharBlock :char="c" :answer="result[i]" :active="active" />
       </template>
     </div>
   </div>
@@ -75,6 +62,7 @@ watchEffect(() => {
   user-select: none;
   position: relative;
 }
+
 .tile .front,
 .tile .back {
   position: absolute;
@@ -84,12 +72,15 @@ watchEffect(() => {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
+
 .tile .back {
   transform: rotateY(180deg);
 }
+
 .tile.revealed .front {
   transform: rotateY(180deg);
 }
+
 .tile.revealed .back {
   transform: rotateY(0deg);
 }

@@ -48,7 +48,7 @@ function privacyButton() {
     </p>
     <div h-1px w-10 border="b base" m4 />
 
-    <WordBlocks my2 :word="t('example')" :revealed="true" answer="致致致致" />
+    <WordBlocks my2 :word="t('example')" :revealed="true" answer="zhi4" />
     <p max-w-130>
       {{ t('intro-4') }}
     </p>

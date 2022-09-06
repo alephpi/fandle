@@ -1,7 +1,9 @@
 import seedrandom from 'seedrandom'
-import { pinyinInitials, toSimplified } from '@hankit/tools'
+import { pinyinInitials } from '@hankit/tools'
+import PinyinFreqPerIdiom from '../data/py_freq_per_idiom.json'
 import type { MatchResult, ParsedChar } from './types'
 import { getPinyin } from './idioms'
+import { EXAMPLE_NUMBERS } from './constants'
 
 export function parsePinyin(pinyin: string) {
   let parts: string[] = []
@@ -53,13 +55,16 @@ export function parseWord(word: string, answer?: string) {
   })
 }
 
-export function testAnswer(input: ParsedChar[], answer: ParsedChar[]) {
-  return input.map((a, j): MatchResult => {
+export function parseAnswer(answer: string) {
+  return parseChar('', answer)
+}
+
+export function testAnswer(input: ParsedChar[], answer: ParsedChar) {
+  return input.map((a): MatchResult => {
     // const char = toSimplified(a.char)
-    const i = 1
-    const shengmu = a._shengmu === answer[i]._shengmu
-    const yunmu = a._yunmu === answer[i]._yunmu
-    const diao = a._diao === answer[i]._diao
+    const shengmu = a._shengmu === answer._shengmu
+    const yunmu = a._yunmu === answer._yunmu
+    const diao = a._diao === answer._diao
     return {
       _shengmu: shengmu,
       _yunmu: yunmu,
@@ -84,6 +89,14 @@ export function getHint(word: string) {
   return word[Math.floor(seedrandom(word)() * word.length)]
 }
 
+export function getAnswerStatistics(answer: keyof typeof PinyinFreqPerIdiom) {
+  return PinyinFreqPerIdiom[answer].freq
+}
+
+export function getAnswerExamples(answer: keyof typeof PinyinFreqPerIdiom) {
+  const examples = PinyinFreqPerIdiom[answer].examples
+  return examples.sort(() => 0.5 - Math.random()).slice(0, EXAMPLE_NUMBERS)
+}
 const numberChar = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
 const tens = ['', '十', '百', '千']
 

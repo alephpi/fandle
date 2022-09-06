@@ -8,6 +8,12 @@ export interface ParsedChar {
   yin: string
 }
 
+export interface ParsedPinyin {
+  _shengmu: string
+  _yunmu: string
+  _diao: string
+  yin: string
+}
 export interface MatchResult {
   // char: MatchType
   _shengmu: boolean

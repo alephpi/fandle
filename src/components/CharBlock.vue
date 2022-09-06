@@ -9,18 +9,6 @@ const props = defineProps<{
   active?: boolean
 }>()
 
-const exact = computed(() => props.answer && props.answer.yin && Object.values(props.answer.yin).every(i => i === 'matchAll'))
-
-const parsed = computed(() => {
-  if (props.answer)
-    return props.answer
-  if (!props.char || !useCheckAssist.value || !props.active)
-    return
-
-  // eslint-disable-next-line no-console
-  console.log('this should not be returned!')
-})
-
 const blockColor = computed(() => {
   if (!props.answer)
     return 'border-base'

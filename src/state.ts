@@ -1,6 +1,7 @@
 import { breakpointsTailwind } from '@vueuse/core'
-import type { MatchType, ParsedChar } from './logic'
-import { START_DATE, TRIES_LIMIT, WORD_LENGTH, parseWord as _parseWord, testAnswer as _testAnswer, checkPass, getHint, isDstObserved, numberToHanzi } from './logic'
+import { parseIsolatedEntityName } from 'typescript'
+import type { ParsedChar } from './logic'
+import { MatchType, START_DATE, TRIES_LIMIT, WORD_LENGTH, parseWord as _parseWord, testAnswer as _testAnswer, checkPass, getHint, isDstObserved, numberToHanzi, parseAnswer, parsePinyin } from './logic'
 import { meta, tries } from './storage'
 import { getAnswerOfDay } from './answers'
 
@@ -41,7 +42,7 @@ export const answer = computed(() =>
 )
 
 export const hint = computed(() => answer.value.hint)
-export const parsedAnswer = computed(() => parseWord(answer.value.word))
+export const parsedAnswer = computed(() => parseAnswer(answer.value.word))
 
 export const isPassed = computed(() => meta.value.passed || (tries.value.length && checkPass(testAnswer(parseWord(tries.value[tries.value.length - 1])))))
 export const isFailed = computed(() => !isPassed.value && tries.value.length >= TRIES_LIMIT)
