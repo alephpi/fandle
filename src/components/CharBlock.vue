@@ -32,7 +32,8 @@ const charColor = computed(() => {
     match1: 'text-white',
     miss: 'op-80',
   }
-  return colors[props.answer.yin]
+  const invisible = useMask.value ? 'invisible' : ''
+  return `${colors[props.answer.yin]} ${invisible}`
 })
 </script>
 

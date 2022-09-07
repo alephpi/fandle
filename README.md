@@ -6,7 +6,7 @@ A Chinese Hanzi variation of [Wordle](https://www.powerlanguage.co.uk/wordle/). 
 
 [handle.antfu.me](https://handle.antfu.me)
 
-请勿剧透！PLEASE DO NOT SPOIL
+请勿泄题！PLEASE DO NOT SPOIL
 
 ## Development Setup
 
