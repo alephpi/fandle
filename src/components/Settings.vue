@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { colorblind, meta, useCheckAssist, useNoHint } from '~/storage'
+import { meta, useCheckAssist, useNoHint } from '~/storage'
 import { locale, t } from '~/i18n'
 
 defineProps<{
@@ -19,10 +19,6 @@ defineProps<{
           繁體
         </button>
       </div>
-      <button square-btn m2 :class="colorblind ? 'text-primary' : 'op80'" @click="colorblind = !colorblind">
-        {{ t('colorblind-mode') }}
-        <div v-if="colorblind" square-btn-mark />
-      </button>
     </div>
     <div v-if="!lite" flex="~ center wrap">
       <button square-btn m2 :class="useNoHint ? 'text-primary' : 'op80'" @click="useNoHint = !useNoHint">
