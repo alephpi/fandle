@@ -116,14 +116,14 @@ watchEffect(() => {
             <div i-mdi-emoticon-devil-outline /> {{ t('view-answer') }}
           </button>
 
-          <div flex="~ center" mt4 :class="isFinished ? 'op0! pointer-events-none' : ''">
+          <!-- <div flex="~ center" mt4 :class="isFinished ? 'op0! pointer-events-none' : ''">
             <button v-if="!useNoHint" mx2 icon-btn text-base pb2 gap-1 flex="~ center" @click="hint()">
               <div i-carbon-idea /> {{ t('hint') }}
             </button>
             <button mx2 icon-btn text-base pb2 gap-1 flex="~ center" @click="sheet()">
               <div i-carbon-grid /> {{ t('cheatsheet') }}
             </button>
-          </div>
+          </div> -->
         </div>
       </Transition>
       <Transition name="fade-in">
