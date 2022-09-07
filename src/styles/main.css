@@ -15,11 +15,11 @@ html.dark {
   --c-primary-deep: #08606a;
   --c-ok: #1d9c9c;
   /* 青 */
-  --c-match-all: #00e09e;
+  --c-match-all: hsl(200, 80%, 50%);
   /* 黄 */
-  --c-match-2: #d6a01d;
+  --c-match-2: hsl(45, 75%, 50%);
   /* 赤 */
-  --c-match-1: #c3272b;
+  --c-match-1: hsl(0, 70%, 45%);
   --c-mis: #de7525;
 }
 
