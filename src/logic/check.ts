@@ -10,9 +10,7 @@ export function filterNonChineseChars(input: string) {
     .join('')
 }
 
-export function checkValidIdiom(word: string, strict = false) {
-  if (!strict)
-    return true
+export function checkValidIdiom(word: string) {
   return !!getIdiom(word)
 }
 

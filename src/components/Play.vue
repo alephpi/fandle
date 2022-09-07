@@ -2,7 +2,7 @@
 import { filterNonChineseChars } from '@hankit/tools'
 import CharBlock from './CharBlock.vue'
 import { answer, dayNo, isDev, isFailed, isFinished, showCheatSheet, showFailed, showHelp, showHint } from '~/state'
-import { markStart, meta, tries, useNoHint, useStrictMode } from '~/storage'
+import { markStart, meta, tries, useNoHint } from '~/storage'
 import { t } from '~/i18n'
 import { EXAMPLE_NUMBERS, TRIES_LIMIT, WORD_LENGTH, checkValidIdiom, getAnswerExamples, getAnswerStatistics } from '~/logic'
 
@@ -17,13 +17,11 @@ const isFinishedDelay = debouncedRef(isFinished, 800)
 function enter() {
   if (input.value.length !== WORD_LENGTH)
     return
-  if (!checkValidIdiom(input.value, useStrictMode.value)) {
+  if (!checkValidIdiom(input.value)) {
     showToast.value = true
     shake.value = true
     return false
   }
-  if (meta.value.strict == null)
-    meta.value.strict = useStrictMode.value
   tries.value.push(input.value)
   input.value = ''
   inputValue.value = ''

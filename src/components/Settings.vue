@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { colorblind, meta, useCheckAssist, useNoHint, useStrictMode } from '~/storage'
+import { colorblind, meta, useCheckAssist, useNoHint } from '~/storage'
 import { locale, t } from '~/i18n'
 
 defineProps<{
@@ -32,13 +32,6 @@ defineProps<{
       <button square-btn m2 :class="useCheckAssist ? 'text-primary' : 'op80'" @click="useCheckAssist = !useCheckAssist">
         {{ t('check-assist') }}
         <div v-if="useCheckAssist" square-btn-mark />
-      </button>
-      <button square-btn m2 :class="[
-        useStrictMode ? 'text-primary' : 'op80',
-        !!meta.tries?.length ? 'op50 pointer-events-none' : '',
-      ]" @click="useStrictMode = !useStrictMode">
-        {{ t('strict-mode') }}
-        <div v-if="useStrictMode" square-btn-mark />
       </button>
     </div>
   </div>
