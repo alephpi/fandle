@@ -73,7 +73,7 @@ function privacyButton() {
 
     <div h-1px w-10 border="b base" m4 />
 
-    <!-- <FeedbackLinks /> -->
+    <FeedbackLinks />
 
     <div h-1px w-10 border="b base" m4 />
 
@@ -88,7 +88,7 @@ function privacyButton() {
       <span op40>, made by </span>
       <a op50 hover:op80 href="https://github.com/alephpi" target="_blank">润心/alephpi</a>
     </div>
-    <a href="https://github.com/alephpi" target="_blank" flex="~ center gap-1" op50 hover:op80>
+    <a href="https://github.com/alephpi/fandle" target="_blank" flex="~ center gap-1" op50 hover:op80>
       <div i-carbon-logo-github />
       Source Code
     </a>
