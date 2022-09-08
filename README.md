@@ -1,6 +1,6 @@
 ![](./public/og.png)
 
-# 反兜（反切汉兜、汉兜反切版） Fandle
+# 反兜（反切汉兜、汉兜反切版、Fandle） 
 
 A Chinese Hanzi variation of [Wordle](https://www.powerlanguage.co.uk/wordle/). 汉字 Wordle.
 
@@ -27,3 +27,6 @@ A Chinese Hanzi variation of [Wordle](https://www.powerlanguage.co.uk/wordle/). 
 ## License
 
 [MIT](./LICENSE) License © 2022-PRESENT [润心/alephpi](https://github.com/alephpi)
+
+## 特别致谢
+汉兜原作者 antfu & Inès。反兜只是我初学vue的练手项目，主要依照汉兜模板改的。感激之情难以言表。
