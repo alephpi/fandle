@@ -52,7 +52,7 @@ function prepare<T>(len: number, arr: T[]) {
 export const _PRE = prepare(1, [[]])
 
 export const _2022_SEP = prepare(30, seedShuffle([
-  ['diao1', ''],
+  ['mao2', '寄托哀思'],
   ['qiao3', ''],
   ['san4', ''],
   ['fei2', ''],
