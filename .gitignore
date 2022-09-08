@@ -11,3 +11,9 @@ node_modules
 .env
 src/answers/answer_list_raw.txt
 src/answers/answer_list_generator.py
+public/反-animated.svg
+public/反.svg
+public/汉兜.svg
+public/切-animated.svg
+public/切.svg
+public/反切汉兜.svg

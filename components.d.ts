@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppName: typeof import('./src/components/AppName.vue')['default']
+    AppNameAnimated: typeof import('./src/components/AppNameAnimated.vue')['default']
     CharBlock: typeof import('./src/components/CharBlock.vue')['default']
     CheatSheet: typeof import('./src/components/CheatSheet.vue')['default']
     Confetti: typeof import('./src/components/Confetti.vue')['default']

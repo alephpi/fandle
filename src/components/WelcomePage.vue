@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppNameAnimated from './AppNameAnimated.vue'
 import { isDark, showHelp, showPrivacyNotes, showVariants, useMask } from '~/state'
 import { initialized } from '~/storage'
 import { t } from '~/i18n'
@@ -29,7 +30,7 @@ function privacyButton() {
       </button>
     </div>
 
-    <AppName h="2.5rem" />
+    <AppNameAnimated h="5rem" />
     <div mt--1 op50 text-sm>
       {{ t('description') }}
     </div>
