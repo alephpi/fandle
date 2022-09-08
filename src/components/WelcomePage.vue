@@ -80,9 +80,11 @@ function privacyButton() {
     <!-- <div op50 hover:op80 @click="privacyButton()">
       {{ t('privacy-notes') }}
     </div> -->
-    <!-- <button text-primary op80 hover:op100 @click="variantButton()">
-      {{ t('other-variants') }}
-    </button> -->
+
+    <button text-primary op80 hover:op100 @click="variantButton()">
+      珠玉在前
+    </button>
+
     <div>
       <span op40>forked from </span><a href="https://handle.antfu.me/" target="_blank" op50 hover:op80>汉兜</a>
       <span op40>, made by </span>

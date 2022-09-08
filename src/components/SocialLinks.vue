@@ -7,21 +7,14 @@ import { t } from '~/i18n'
     {{ t('join-community') }}
   </div>
   <div flex>
-    <a
-      square-btn mx2 flex-gap-1
-      href="https://weibo.com/p/100808efe67c0dab5ab1f22adcfd6635b05936"
-      target="_blank"
-    >
-      <div i-ri-weibo-line />
-      {{ t('weibo-topic') }}
+    <a square-btn mx2 flex-gap-1 href="https://t.bilibili.com/703161926891339800?spm_id_from=444.41.0.0"
+      target="_blank">
+      <div i-ri-bilibili-fill />
+      {{ t('bilibili') }}
     </a>
-    <a
-      square-btn mx2 flex-gap-1
-      href="https://twitter.com/i/communities/1498733552443473920"
-      target="_blank"
-    >
-      <div i-ri-twitter-line />
-      {{ t('twitter-community') }}
+    <a square-btn mx2 flex-gap-1 href="https://github.com/alephpi/fandle/discussions/" target="_blank">
+      <div i-ri-github-fill />
+      {{ 'GitHub' }}
     </a>
   </div>
 </template>

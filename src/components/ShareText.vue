@@ -8,18 +8,12 @@ const lines = computed(() => {
     const parsed = parseWord(word, answer.value.word)
     return testAnswer(parsed)
       .map((i, idx) => {
-        if (i.char === 'exact')
+        if (i.yin === 'matchAll')
           return '🟩'
-        if (i.char === 'misplaced')
-          return '🟧'
-        if (parsed[idx]._1 && i._1 === 'exact')
-          return '🟠'
-        if (parsed[idx]._2 && i._2 === 'exact')
-          return '🟠'
-        if (parsed[idx]._3 && i._3 === 'exact')
-          return '🟠'
-        if (i._1 === 'misplaced' || i._2 === 'misplaced' || i._3 === 'misplaced')
-          return '🟡'
+        if (i.yin === 'match2')
+          return '🟨'
+        if (i.yin === 'match1')
+          return '🟥'
         return '⬜️'
       })
       .join('')
@@ -35,7 +29,7 @@ const lines = computed(() => {
     '',
     ...table,
     '',
-    'handle.antfu.me',
+    'fandle.netlify.app',
   ]
 })
 
@@ -56,7 +50,7 @@ async function shareSystem() {
   return false
 }
 
-onMounted(async() => {
+onMounted(async () => {
   if (clipboard.isSupported) {
     await clipboard.copy(text.value)
     copied.value = true
@@ -66,15 +60,10 @@ onMounted(async() => {
 
 <template>
   <p text-center mb4>
-    {{ copied ? t('share-copied'): t('share-not-copied') }}
+    {{ copied ? t('share-copied') : t('share-not-copied') }}
   </p>
-  <textarea
-    bg-gray-500:5 rounded p5 select-text resize-none outline-none
-    w-90 text-center
-    style="line-height: 19px;letter-spacing: 1px;"
-    :rows="lines.length"
-    :value="text" readonly
-  />
+  <textarea bg-gray-500:5 rounded p5 select-text resize-none outline-none w-90 text-center
+    style="line-height: 19px;letter-spacing: 1px;" :rows="lines.length" :value="text" readonly />
   <button v-if="share.isSupported" my4 square-btn @click="shareSystem()">
     <div i-carbon-share />
     {{ t('share-with-system-api') }}
