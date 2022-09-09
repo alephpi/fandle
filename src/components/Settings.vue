@@ -23,11 +23,13 @@ defineProps<{
     <div flex="~ center wrap">
       拼音风格
       <div square-btn m2>
-        <button :class="pinyinStyle === 'plain' ? 'text-primary' : 'op50'" @click="pinyinStyle = 'plain'">
+        <button title="y,w作声母" :class="pinyinStyle === 'plain' ? 'text-primary' : 'op50'"
+          @click="pinyinStyle = 'plain'">
           字面
         </button>
         <div w-1px h-4 border="r base" />
-        <button :class="pinyinStyle === 'strict' ? 'text-primary' : 'op50'" @click="pinyinStyle = 'strict'">
+        <button title="y,w还原" :class="pinyinStyle === 'strict' ? 'text-primary' : 'op50'"
+          @click="pinyinStyle = 'strict'">
           严格
         </button>
       </div>
