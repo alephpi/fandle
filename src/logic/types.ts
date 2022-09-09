@@ -3,17 +3,14 @@ export type MatchType = 'matchAll' | 'match2' | 'match1' | 'miss'
 
 export interface ParsedChar {
   char: string
-  _shengmu: string
-  _yunmu: string
-  _diao: string
-  yin: string
+  parsedPinyin: ParsedPinyin
 }
 
 export interface ParsedPinyin {
   _shengmu: string
   _yunmu: string
   _diao: string
-  yin: string
+  rawpinyin: string
 }
 export interface MatchResult {
   // char: MatchType
