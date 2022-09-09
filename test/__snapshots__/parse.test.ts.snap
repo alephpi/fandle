@@ -1,100 +1,82 @@
 // Vitest Snapshot v1
 
-exports[`parseChar 1`] = `
+exports[`parsePinyin 1`] = `
 {
-  "_1": "h",
-  "_2": "u",
-  "_3": undefined,
-  "char": "虎",
-  "parts": [
-    "h",
-    "u",
-  ],
-  "tone": 3,
-  "yin": "hu",
+  "_diao": "",
+  "_shengmu": "",
+  "_yunmu": "i",
+  "rawpinyin": "yi",
 }
 `;
 
-exports[`parseChar 2`] = `
+exports[`parsePinyin 2`] = `
 {
-  "_1": "w",
-  "_2": "ei",
-  "_3": undefined,
-  "char": "微",
-  "parts": [
-    "w",
-    "ei",
-  ],
-  "tone": 1,
-  "yin": "wei",
+  "_diao": "",
+  "_shengmu": "",
+  "_yunmu": "ve",
+  "rawpinyin": "yve",
 }
 `;
 
-exports[`parseChar 3`] = `
+exports[`parsePinyin 3`] = `
 {
-  "_1": "j",
-  "_2": "iang",
-  "_3": undefined,
-  "char": "姜",
-  "parts": [
-    "j",
-    "iang",
-  ],
-  "tone": 1,
-  "yin": "jiang",
+  "_diao": "",
+  "_shengmu": "",
+  "_yunmu": "iou",
+  "rawpinyin": "you",
 }
 `;
 
-exports[`parseChar 4`] = `
+exports[`parsePinyin 4`] = `
 {
-  "_1": "sh",
-  "_2": "ou",
-  "_3": undefined,
-  "char": "寿",
-  "parts": [
-    "sh",
-    "ou",
-  ],
-  "tone": 4,
-  "yin": "shou",
+  "_diao": "",
+  "_shengmu": "",
+  "_yunmu": "u",
+  "rawpinyin": "wu",
 }
 `;
 
-exports[`parseChar 5`] = `
+exports[`parsePinyin 5`] = `
 {
-  "_1": "w",
-  "_2": "eng",
-  "_3": undefined,
-  "char": "翁",
-  "parts": [
-    "w",
-    "eng",
-  ],
-  "tone": 1,
-  "yin": "weng",
+  "_diao": "",
+  "_shengmu": "",
+  "_yunmu": "uei",
+  "rawpinyin": "wei",
 }
 `;
 
-exports[`testAnswer 1`] = `
-[
-  {
-    "_1": "exact",
-    "_2": "exact",
-    "_3": "exact",
-    "char": "exact",
-    "tone": "exact",
-  },
-]
+exports[`parsePinyin 6`] = `
+{
+  "_diao": "",
+  "_shengmu": "d",
+  "_yunmu": "uei",
+  "rawpinyin": "dui",
+}
 `;
 
-exports[`testAnswer 2`] = `
-[
-  {
-    "_1": "none",
-    "_2": "exact",
-    "_3": "exact",
-    "char": "none",
-    "tone": "exact",
-  },
-]
+exports[`parsePinyin 7`] = `
+{
+  "_diao": "",
+  "_shengmu": "t",
+  "_yunmu": "uei",
+  "rawpinyin": "tui",
+}
+`;
+
+exports[`parsePinyin 8`] = `
+{
+  "_diao": "",
+  "_shengmu": "j",
+  "_yunmu": "vn",
+  "rawpinyin": "jvn",
+}
+`;
+
+exports[`parsePinyin 9`] = `
+{
+  "_diao": "",
+  "_shengmu": "d",
+  "_yunmu": "uen",
+  "rawpinyin": "dun",
+}
 `;

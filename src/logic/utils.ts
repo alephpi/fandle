@@ -5,7 +5,7 @@ import type { MatchResult, ParsedChar, ParsedPinyin, PinyinStyle } from './types
 import { getPinyin } from './idioms'
 import { EXAMPLE_NUMBERS } from './constants'
 
-function parsePinyin(pinyin: string, pyStyle = 'plain') {
+export function parsePinyin(pinyin: string, pyStyle = 'plain') {
   const tone = pinyin.match(/[\d]$/)?.[0] || ''
   const rawpinyin = pinyin
   if (tone)
@@ -102,7 +102,8 @@ export function checkPass(result: MatchResult[]) {
 }
 
 export function getHint(word: string) {
-  return word[Math.floor(seedrandom(word)() * word.length)]
+  // hint is the tone
+  return word.slice(-1)
 }
 
 export function getAnswerStatistics(answer: keyof typeof PinyinFreqPerIdiom) {

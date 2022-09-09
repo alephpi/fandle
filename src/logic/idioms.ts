@@ -20,6 +20,6 @@ export function getPinyin(word: string) {
   // https://baike.baidu.com/item/%E6%B1%89%E8%AF%AD%E6%8B%BC%E9%9F%B3%E6%96%B9%E6%A1%88/1884432
   // 将jqxy后的u还原为v
   return parts.map(i => i
-    .replace(/^(y|j|q|x)u([a-z]*[0-9]?)$/g, '$1v$2'),
+    .replace(/^(y|j|q|x)u([a-z]*[0-9]?)$/g, '$1v$2').replace(/^(b|p|m|f)o([0-9]?)$/g, '$1uo$2'),
   )
 }

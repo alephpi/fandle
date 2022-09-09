@@ -32,6 +32,7 @@ export const daySince = useDebounce(computed(() => {
 }))
 export const dayNo = ref(+(params.get('d') || daySince.value))
 export const dayNoHanzi = computed(() => `${numberToHanzi(dayNo.value)}日`)
+// params.get('word') is used for debugging, in particular, put word = [a given pinyin] then it can be assigned to it
 export const answer = computed(() =>
   params.get('word')
     ? {
@@ -42,8 +43,8 @@ export const answer = computed(() =>
 )
 
 export const hint = computed(() => answer.value.hint)
-// need to restore the strict spelling, i.e. u after j q x y should be v
-export const parsedAnswer = computed(() => parseAnswer(answer.value.word.replace(/^(y|j|q|x)u([a-z]*[0-9]?)$/g, '$1v$2')))
+// need to restore the strict spelling, i.e. u after j q x y should be v, o after b p m f should be uo.
+export const parsedAnswer = computed(() => parseAnswer(answer.value.word.replace(/^(y|j|q|x)u([a-z]*[0-9]?)$/g, '$1v$2').replace(/^(b|p|m|f)o([0-9]?)$/g, '$1uo$2')))
 
 export const isPassed = computed(() => meta.value.passed || (tries.value.length && checkPass(testAnswer(parseWord(tries.value[tries.value.length - 1])))))
 export const isFailed = computed(() => !isPassed.value && tries.value.length >= TRIES_LIMIT)
