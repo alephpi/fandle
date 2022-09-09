@@ -25,7 +25,7 @@ watch(daySince, (n, o) => {
 watch([isFinished, meta], () => {
   if (isFinished.value)
     markEnd()
-    // sendAnalytics()
+  // sendAnalytics()
 }, { flush: 'post' })
 
 watch(isFinished, (v) => {

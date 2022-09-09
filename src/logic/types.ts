@@ -1,3 +1,4 @@
+export type PinyinStyle = 'plain' | 'strict'
 export type MatchType = 'matchAll' | 'match2' | 'match1' | 'miss'
 
 export interface ParsedChar {
@@ -35,3 +36,4 @@ export interface TriesMeta {
   strict?: boolean
   sent?: boolean
 }
+

@@ -1,29 +1,42 @@
 import seedrandom from 'seedrandom'
-import { pinyinInitials } from '@hankit/tools'
+import { pinyinInitials, pinyinInitialsStrict } from '@hankit/tools'
 import PinyinFreqPerIdiom from '../data/py_freq_per_idiom.json'
-import type { MatchResult, ParsedChar } from './types'
+import type { MatchResult, ParsedChar, PinyinStyle } from './types'
 import { getPinyin } from './idioms'
 import { EXAMPLE_NUMBERS } from './constants'
 
-export function parsePinyin(pinyin: string) {
+function parsePinyin(pinyin: string, pyStyle = 'plain') {
   let parts: string[] = []
-  if (pinyin) {
-    let rest = pinyin
-    const one = pinyinInitials.find(i => rest.startsWith(i))
-    if (one)
-      rest = rest.slice(one.length)
-    parts = [one, rest].filter(Boolean) as string[]
+  if (pyStyle === 'plain') {
+    if (pinyin) {
+      let rest = pinyin
+      const one = pinyinInitials.find(i => rest.startsWith(i))
+      if (one)
+        rest = rest.slice(one.length)
+      parts = [one, rest].filter(Boolean) as string[]
+    }
+  }
+  // otherwise equal to strict
+  else {
+    if (pinyin) {
+      let rest = pinyin
+      const one = pinyinInitialsStrict.find(i => rest.startsWith(i))
+      if (one)
+        rest = rest.slice(one.length)
+      rest = rest.replace(/yv/, 'v').replace(/yi?/, 'i').replace(/wu?/, 'u').replace(/iu/, 'iou').replace(/ui/, 'uei').replace(/un/, 'uen')
+      parts = [one, rest].filter(Boolean) as string[]
+    }
   }
   return parts
 }
 
-export function parseChar(char: string, pinyin: string): ParsedChar {
+function parseChar(char: string, pinyin: string, pyStyle?: PinyinStyle): ParsedChar {
   // 现在始终有拼音了，因为我提供了总表
   const tone = pinyin.match(/[\d]$/)?.[0] || ''
   if (tone)
     pinyin = pinyin.slice(0, -tone.length).trim()
 
-  const parts = parsePinyin(pinyin)
+  const parts = parsePinyin(pinyin, pyStyle)
   // if there is no final, actually it's no intital
   if (parts[0] && !parts[1]) {
     parts[1] = parts[0]
@@ -41,7 +54,7 @@ export function parseChar(char: string, pinyin: string): ParsedChar {
   }
 }
 
-export function parseWord(word: string, answer?: string) {
+export function parseWord(word: string, answer?: string, pyStyle?: PinyinStyle) {
   const pinyins = getPinyin(word)
   const chars = Array.from(word)
   const answerPinyin = answer ? getPinyin(answer) : undefined
@@ -51,12 +64,12 @@ export function parseWord(word: string, answer?: string) {
     // try match the pinyin from the answer word
     if (answerPinyin && answer && answer.includes(char))
       pinyin = answerPinyin[answer.indexOf(char)] || pinyin
-    return parseChar(char, pinyin)
+    return parseChar(char, pinyin, pyStyle)
   })
 }
 
-export function parseAnswer(answer: string) {
-  return parseChar('', answer)
+export function parseAnswer(answer: string, pyStyle?: PinyinStyle) {
+  return parseChar('', answer, pyStyle)
 }
 
 export function testAnswer(input: ParsedChar[], answer: ParsedChar) {
