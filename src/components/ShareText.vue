@@ -9,7 +9,7 @@ const lines = computed(() => {
     return testAnswer(parsed)
       .map((i, idx) => {
         if (i.yin === 'matchAll')
-          return '🟩'
+          return '🟦'
         if (i.yin === 'match2')
           return '🟨'
         if (i.yin === 'match1')
