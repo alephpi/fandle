@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     AppNameAnimated: typeof import('./src/components/AppNameAnimated.vue')['default']
     CharBlock: typeof import('./src/components/CharBlock.vue')['default']
     CheatSheet: typeof import('./src/components/CheatSheet.vue')['default']
+    CheatSheetButton: typeof import('./src/components/CheatSheetButton.vue')['default']
     Confetti: typeof import('./src/components/Confetti.vue')['default']
     Countdown: typeof import('./src/components/Countdown.vue')['default']
     Dashboard: typeof import('./src/components/Dashboard.vue')['default']

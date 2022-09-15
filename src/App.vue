@@ -22,5 +22,6 @@ watchEffect(() => {
     </div>
     <ModalsLayer />
     <Confetti />
+    <!-- <router-view /> -->
   </main>
 </template>

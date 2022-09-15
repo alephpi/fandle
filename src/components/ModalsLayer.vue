@@ -17,14 +17,14 @@ const lg = breakpoints.lg
 
 <template>
   <Modal v-model="showCheatSheet" :direction="lg ? 'right' : 'top'" :mask="!lg">
-    <!-- <CheatSheet /> -->
+    <CheatSheet />
   </Modal>
   <Modal v-model="showSettings" direction="top">
     <Settings my6 />
   </Modal>
-  <!-- <Modal v-model="showHint" direction="top">
+  <Modal v-model="showHint" direction="top">
     <Hint />
-  </Modal> -->
+  </Modal>
   <Modal v-model="showFailed" direction="top">
     <FailedPage />
   </Modal>

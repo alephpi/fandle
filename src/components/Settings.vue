@@ -1,10 +1,32 @@
 <script setup lang="ts">
-import { meta, pinyinStyle, useCheckAssist, useNoHint } from '~/storage'
+import { useRoute, useRouter } from 'vue-router'
+import { dictType, meta, pinyinStyle, useCheckAssist, useNoHint } from '~/storage'
 import { locale, t } from '~/i18n'
 
 defineProps<{
   lite?: boolean
 }>()
+
+const router = useRouter()
+function switchDict(dict: string) {
+  switch (dict) {
+    case 'mandarin':
+      dictType.value = 'mandarin'
+      break
+    case 'cantonese':
+      dictType.value = 'cantonese'
+      break
+    default:
+      dictType.value = 'mandarin'
+      break
+  }
+  // router.replace({
+  //   name: '/',
+  //   query: {
+  //     dict: dictType.value,
+  //   },
+  // })
+}
 </script>
 
 <template>
@@ -20,20 +42,37 @@ defineProps<{
         </button>
       </div>
     </div>
-    <div flex="~ center wrap">
-      拼音风格
+    <!-- <div flex="~ center wrap">
+      辞典
+      <div class="i-fluent-book-24-regular" />
       <div square-btn m2>
-        <button title="y,w作声母" :class="pinyinStyle === 'plain' ? 'text-primary' : 'op50'"
-          @click="pinyinStyle = 'plain'">
-          字面
+        <button :class=" dictType === 'mandarin' ? 'text-primary' : 'op50'" @click="switchDict('mandarin')">
+          普通话
         </button>
         <div w-1px h-4 border="r base" />
-        <button title="y,w还原" :class="pinyinStyle === 'strict' ? 'text-primary' : 'op50'"
-          @click="pinyinStyle = 'strict'">
-          严格
+        <button :class="dictType === 'cantonese' ? 'text-primary' : 'op50'" @click="switchDict('cantonese')">
+          粤语
         </button>
       </div>
-    </div>
+    </div> -->
+
+    <!-- Don't display in welcome page -->
+    <template v-if="!lite">
+      <div v-if="dictType === 'mandarin'" flex="~ center wrap">
+        拼音风格
+        <div square-btn m2>
+          <button title="y,w作声母" :class="pinyinStyle === 'plain' ? 'text-primary' : 'op50'"
+            @click="pinyinStyle = 'plain'">
+            字面
+          </button>
+          <div w-1px h-4 border="r base" />
+          <button title="y,w还原" :class="pinyinStyle === 'strict' ? 'text-primary' : 'op50'"
+            @click="pinyinStyle = 'strict'">
+            严格
+          </button>
+        </div>
+      </div>
+    </template>
 
     <!-- <div v-if="!lite" flex="~ center wrap">
       <button square-btn m2 :class="useNoHint ? 'text-primary' : 'op80'" @click="useNoHint = !useNoHint">
