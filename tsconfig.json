@@ -15,7 +15,8 @@
     "forceConsistentCasingInFileNames": true,
     "types": [
       "vite/client",
-      "vitest/importMeta"
+      "vitest/importMeta",
+      "vite-plugin-pages/client"
     ],
     "paths": {
       "~/*": ["src/*"],

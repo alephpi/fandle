@@ -28,6 +28,8 @@ declare module '@vue/runtime-core' {
     Play: typeof import('./src/components/Play.vue')['default']
     PrivacyNotes: typeof import('./src/components/PrivacyNotes.vue')['default']
     ResultFooter: typeof import('./src/components/ResultFooter.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     Settings: typeof import('./src/components/Settings.vue')['default']
     ShareButton: typeof import('./src/components/ShareButton.vue')['default']
     ShareDialog: typeof import('./src/components/ShareDialog.vue')['default']
