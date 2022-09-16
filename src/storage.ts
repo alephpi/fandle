@@ -1,11 +1,12 @@
 import { t } from './i18n'
 import { dayNo } from './state'
-import type { PinyinStyle, TriesMeta } from './logic'
+import type { DictType, PinyinStyle, TriesMeta } from './logic'
 
 export const legacyTries = useStorage<Record<number, string[]>>('handle-tries', {})
 export const history = useStorage<Record<number, TriesMeta>>('handle-tries-meta', {})
 export const initialized = useStorage('handle-initialized', false)
 
+export const dictType = useStorage<DictType>('fandle-dict-type', 'mandarin')
 export const pinyinStyle = useStorage<PinyinStyle>('fandle-pinyin-style', 'plain')
 export const useNoHint = useStorage('handle-hard-mode', false)
 export const useCheckAssist = useStorage('handle-check-assist', false)

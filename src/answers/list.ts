@@ -195,6 +195,7 @@ export const answers: string[][] = [
 
 // duplicated check
 if (import.meta.hot) {
+  // dynamic import since it is during the runtime
   const { checkValidPinyin } = await import('../logic')
   const map = new Map<string, number>()
   answers.forEach((a, i) => {

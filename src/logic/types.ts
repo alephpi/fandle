@@ -1,4 +1,5 @@
 export type PinyinStyle = 'plain' | 'strict'
+export type DictType = 'mandarin' | 'cantonese'
 export type MatchType = 'matchAll' | 'match2' | 'match1' | 'miss'
 
 export interface ParsedChar {
