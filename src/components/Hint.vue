@@ -85,13 +85,13 @@ function getHintOnFinal() {
 <template>
   <div p8 flex="~ col gap-4" items-center>
     <p><b>{{ dayNoHanzi }}</b></p>
-    <button :class="{ disabled: givenHintOnInitial }" @click="getHintOnInitial">
+    <button font-serif :class="{ disabled: givenHintOnInitial }" @click="getHintOnInitial">
       {{ hintOnInitial }}
     </button>
-    <button :class="{ disabled: givenHintOnMiddle }" @click="getHintOnMiddle">
+    <button font-serif :class="{ disabled: givenHintOnMiddle }" @click="getHintOnMiddle">
       {{ hintOnMiddle }}
     </button>
-    <button :class="{ disabled: givenHintOnFinal }" @click="getHintOnFinal">
+    <button font-serif :class="{ disabled: givenHintOnFinal }" @click="getHintOnFinal">
       {{ hintOnFinal }}
     </button>
   </div>

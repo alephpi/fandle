@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { pinyinFinals, pinyinFinalsStrict, pinyinInitials, pinyinInitialsStrict } from '@hankit/tools'
+import { pinyinFinals, pinyinFinalsStrict, pinyinFinalsTable, pinyinInitials, pinyinInitialsStrict, pinyinInitialsTable } from '@hankit/tools'
 import CheatSheetButton from './CheatSheetButton.vue'
 import { t } from '~/i18n'
 import { showCheatSheet } from '~/state'
@@ -48,13 +48,40 @@ function close() {
       <div text-center>
         {{ t('finals') }}
       </div>
-      <div grid="~ cols-2 gap-3" h-min>
-        <div v-for="s of pinyinInitialsStrict" :key="s">
+      <div grid="~ cols-4 gap-3" h-min>
+        <div v-for="s of pinyinInitialsTable.b_group" :key="s">
+          <CheatSheetButton :text="s" />
+        </div>
+        <div v-for="s of pinyinInitialsTable.d_group" :key="s">
+          <CheatSheetButton :text="s" />
+        </div>
+        <div v-for="s of pinyinInitialsTable.g_group" :key="s">
+          <CheatSheetButton :text="s" />
+        </div>
+        <div />
+        <div v-for="s of pinyinInitialsTable.j_group" :key="s">
+          <CheatSheetButton :text="s" />
+        </div>
+        <div />
+        <div v-for="s of pinyinInitialsTable.zh_group" :key="s">
+          <CheatSheetButton :text="s" />
+        </div>
+        <div v-for="s of pinyinInitialsTable.z_group" :key="s">
+          <CheatSheetButton :text="s" />
+        </div>
+        <div />
+        <div v-for="s of pinyinInitialsTable.zero_group" :key="s">
           <CheatSheetButton :text="s" />
         </div>
       </div>
-      <div grid="~ cols-3 gap-3" h-min>
-        <div v-for="s of pinyinFinalsStrict" :key="s">
+      <div grid="~ cols-6 gap-3" h-min>
+        <div v-for="s of pinyinFinalsTable.single_group" :key="s">
+          <CheatSheetButton :text="s.replace('v', 'ü')" />
+        </div>
+        <div v-for="s of pinyinFinalsTable.double_group" :key="s">
+          <CheatSheetButton :text="s.replace('v', 'ü')" />
+        </div>
+        <div v-for="s of pinyinFinalsTable.nasal_group" :key="s">
           <CheatSheetButton :text="s.replace('v', 'ü')" />
         </div>
       </div>
