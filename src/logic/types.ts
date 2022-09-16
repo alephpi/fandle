@@ -29,8 +29,7 @@ export interface TriesMeta {
   failed?: boolean
   passed?: boolean
   tries?: string[]
-  hint?: boolean
-  hintLevel?: number
+  hintType?: number // 0 for no hint, 1 for hint initial, 2 for hint middle, 3 for hint final, 4 for hint inital and middle, 5 for hint inital and final, 6 for hint middle and final, 7 for hint initial, middle and final.
   strict?: boolean
   sent?: boolean
 }

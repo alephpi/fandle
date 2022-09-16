@@ -7,12 +7,6 @@ import { parsePinyin } from '~/logic'
 
 const answer_pinyin = parsePinyin(answer.value.word, 'strict')
 
-const parsed = computed(() => parseWord(hint.value, answer.value.word)[0])
-const masked = computed(() => ({
-  ...parsed.value,
-  char: '?',
-}))
-
 const givenHintOnInitial = ref(false)
 const givenHintOnMiddle = ref(false)
 const givenHintOnFinal = ref(false)
@@ -20,6 +14,26 @@ const givenHintOnFinal = ref(false)
 const hintOnInitial = ref('提示声母')
 const hintOnMiddle = ref('提示介母')
 const hintOnFinal = ref('提示韵母')
+
+watch([givenHintOnInitial, givenHintOnMiddle, givenHintOnFinal],
+  ([v1, v2, v3]) => {
+    if (v1 && !v2 && !v3)
+      meta.value.hintType = 1
+    else if (!v1 && v2 && !v3)
+      meta.value.hintType = 2
+    else if (!v1 && !v2 && v3)
+      meta.value.hintType = 3
+    else if (v1 && v2 && !v3)
+      meta.value.hintType = 4
+    else if (v1 && !v2 && v3)
+      meta.value.hintType = 5
+    else if (!v1 && v2 && v3)
+      meta.value.hintType = 6
+    else if (v1 && v2 && v3)
+      meta.value.hintType = 7
+    else
+      meta.value.hintType = 0
+  })
 
 function getHintOnInitial() {
   if (pinyinInitialsTable.b_group.includes(answer_pinyin._shengmu))

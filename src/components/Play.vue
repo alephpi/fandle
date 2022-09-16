@@ -41,9 +41,7 @@ function focus() {
   el.value?.focus()
 }
 function hint() {
-  meta.value.hint = true
-  if (!meta.value.hintLevel)
-    meta.value.hintLevel = 1
+  meta.value.hintType = 0
   showHint.value = true
 }
 function sheet() {
