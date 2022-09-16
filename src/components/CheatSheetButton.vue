@@ -4,8 +4,7 @@ const props = defineProps<{
     text: string
 }>()
 
-const excluded = useStorage(`fandle-cheat-sheet-button${props.text}`, false)
-
+const excluded = ref(false)
 function press() {
     excluded.value = !excluded.value
 }
