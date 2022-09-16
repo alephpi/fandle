@@ -11,9 +11,9 @@ const givenHintOnInitial = ref(false)
 const givenHintOnMiddle = ref(false)
 const givenHintOnFinal = ref(false)
 
-const hintOnInitial = ref('提示声母')
-const hintOnMiddle = ref('提示介母')
-const hintOnFinal = ref('提示韵母')
+const hintOnInitial = ref('')
+const hintOnMiddle = ref('')
+const hintOnFinal = ref('')
 
 watch([givenHintOnInitial, givenHintOnMiddle, givenHintOnFinal],
   ([v1, v2, v3]) => {
@@ -86,13 +86,13 @@ function getHintOnFinal() {
   <div p8 flex="~ col gap-4" items-center>
     <p><b>{{ dayNoHanzi }}</b></p>
     <button font-serif :class="{ disabled: givenHintOnInitial }" @click="getHintOnInitial">
-      {{ hintOnInitial }}
+      {{ givenHintOnInitial ? hintOnInitial : t('hint') + t('initials') }}
     </button>
     <button font-serif :class="{ disabled: givenHintOnMiddle }" @click="getHintOnMiddle">
-      {{ hintOnMiddle }}
+      {{ givenHintOnMiddle ? hintOnMiddle : t('hint') + t('middle') }}
     </button>
     <button font-serif :class="{ disabled: givenHintOnFinal }" @click="getHintOnFinal">
-      {{ hintOnFinal }}
+      {{ givenHintOnFinal ? hintOnFinal : t('hint') + t('finals') }}
     </button>
   </div>
 </template>

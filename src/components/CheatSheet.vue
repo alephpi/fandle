@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { pinyinFinals, pinyinFinalsStrict, pinyinFinalsTable, pinyinInitials, pinyinInitialsStrict, pinyinInitialsTable } from '@hankit/tools'
+import { pinyinFinals, pinyinFinalsTable, pinyinInitials, pinyinInitialsTable } from '@hankit/tools'
 import CheatSheetButton from './CheatSheetButton.vue'
 import { t } from '~/i18n'
 import { showCheatSheet } from '~/state'

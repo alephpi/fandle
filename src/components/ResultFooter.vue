@@ -35,9 +35,6 @@ const hintText = computed(() => {
       {{ dayNoHanzi }} ·
     </template>
     {{ hintText }} ·
-    <template v-if="meta.strict">
-      {{ t('strict-mode') }} ·
-    </template>
     {{ formatDuration(meta.duration || 0) }}
   </div>
 </template>
