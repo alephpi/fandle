@@ -18,3 +18,6 @@ public/切-animated.svg
 public/切.svg
 public/反切汉兜.svg
 vite.config.ts.timestamp*.mjs
+src/data/韵书/*
+!src/data/韵书/粤语成语表（香港拼音）.json
+!src/data/韵书/粤语成语表（广州拼音）.json
