@@ -1,3 +1,7 @@
 <script setup lang="ts">
-const name = ref('')
+import Mandarin from './mandarin.vue'
 </script>
+
+<template>
+    <Mandarin />
+</template>

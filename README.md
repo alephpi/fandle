@@ -28,8 +28,18 @@ A Chinese Hanzi variation of [Wordle](https://www.powerlanguage.co.uk/wordle/). 
 
 [MIT](./LICENSE) License © 2022-PRESENT [润心/alephpi](https://github.com/alephpi)
 
-## 特别致谢
+## Acknowledgements and References
 汉兜原作者 antfu & Inès。反兜只是我初学vue的练手项目，主要依照汉兜模板改的。感激之情难以言表。
+
+[OpenCC](https://github.com/BYVoid/OpenCC)
+
+[Moedict](https://github.com/g0v/moedict-webkit)
+
+[粵語拼音轉換表](https://github.com/kfcd/pingyam)
+
+[《粤音小镜》(20160723，整理者poem)](https://zhuanlan.zhihu.com/p/21693656)
+
+[《一些语言学语料（poem整理，excel格式）》](https://zhuanlan.zhihu.com/p/35839861)
 
 ## 关于拼音的几点说明
 

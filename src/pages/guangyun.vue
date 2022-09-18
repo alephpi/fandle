@@ -6,13 +6,14 @@ import { DAYS_PLAY_BACK } from '~/logic/constants'
 <template>
     <Navbar />
     <div font-serif>
-        粤语版
+        广韵版
     </div>
+
     <div p="4">
         <NoQuizToday v-if="!answer.word" />
         <NoFuturePlay v-else-if="dayNo > daySince && !isDev" />
         <NoPastPlay v-else-if="daySince - dayNo > DAYS_PLAY_BACK && !isDev" />
-        <Play v-else mode="cantonese" />
+        <Play v-else />
     </div>
     <ModalsLayer />
 </template>

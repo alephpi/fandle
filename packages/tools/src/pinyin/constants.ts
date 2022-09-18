@@ -1,6 +1,3 @@
-import pinyin from 'pinyin'
-import { createSemanticDiagnosticsBuilderProgram } from 'typescript'
-
 export const pinyinInitials = 'b p m f d t n l g k h j q x zh ch sh r z c s w y'.split(' ')
 export const pinyinFinals = 'a ai an ang ao e ei en eng er i ia ian iang iao ie in ing iong iu o ong ou u ua uai uan uang ui un uo v van ve vn'.split(' ')
 
@@ -27,7 +24,27 @@ export const pinyinFinalsTable = {
     v_group: ['v', 've', 'van', 'vn'],
 }
 
-// console.log(pinyinFinalsTable.single_group.length + pinyinFinalsTable.double_group.length + pinyinFinalsTable.nasal_group.length)
-// console.log(pinyinFinalsTable.zero_group.length + pinyinFinalsTable.i_group.length + pinyinFinalsTable.u_group.length + pinyinFinalsTable.v_group.length)
-// console.log(pinyinFinals.length)
-// console.log(pinyinFinalsStrict.length)
+// put gw kw before to first match them, otherwise it will be matched as g and k.
+export const pinyinInitialsCantonese = 'gw kw b p m f d t n l g k ng h z c s j w'.split(' ')
+export const pinyinFinalsCantonese = 'aa aai aau aam aan aang aap aat aak ai au am an ang ap at ak u ui un ung ut uk o oi on ong ot ok e ei eng ek i iu im in ing ip it ik yu yun yut eoi eon eot oe oeng oek'.split(' ')
+
+export const pinyinInitialsTableCantonese = {
+    b_group: ['b', 'p', 'm', 'f'],
+    d_group: ['d', 't', 'n', 'l'],
+    g_group: ['g', 'k', 'ng', 'h'],
+    z_group: ['z', 'c', 's', 'j'],
+    w_group: ['gw', 'kw', 'w'],
+    zero_group: ['Ø'],
+}
+
+export const pinyinFinalsTableCantonese = {
+    aa_group: ['aa', 'aai', 'aau', 'aam', 'aan', 'aang', 'aap', 'aat', 'aak'],
+    a_group: ['ai', 'au', 'am', 'an', 'ang', 'ap', 'at', 'ak'],
+    u_group: ['u', 'ui', 'un', 'ung', 'ut', 'uk'],
+    o_group: ['o', 'oi', 'on', 'ong', 'ot', 'ok'],
+    e_group: ['e', 'ei', 'eng', 'ek'],
+    i_group: ['i', 'iu', 'im', 'in', 'ing', 'ip', 'it', 'ik'],
+    yu_group: ['yu', 'yun', 'yut'],
+    eo_group: ['eoi', 'eon', 'eot'],
+    oe_group: ['oe', 'oeng', 'oek'],
+}
