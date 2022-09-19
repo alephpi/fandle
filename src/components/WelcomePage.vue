@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppNameAnimated from './AppNameAnimated.vue'
 import { isDark, showHelp, showPrivacyNotes, showVariants, useMask } from '~/state'
-import { initialized } from '~/storage'
+import { dictType, initialized } from '~/storage'
 import { t } from '~/i18n'
 
 function start() {
@@ -17,6 +17,19 @@ function variantButton() {
 function privacyButton() {
   showPrivacyNotes.value = true
 }
+
+const answer = computed(
+  () => {
+    switch (dictType.value) {
+      case 'cantonese':
+        return 'zi3'
+      case 'mandarin':
+        return 'zhi4'
+      default:
+        return 'zhi4'
+    }
+  },
+)
 </script>
 
 <template>
@@ -49,9 +62,9 @@ function privacyButton() {
     </p>
     <div h-1px w-10 border="b base" m4 />
 
-    <WordBlocks my2 :word="t('example')" :revealed="true" answer="zhi4" />
+    <WordBlocks :mode="dictType" my2 :word="t('example')" :revealed="true" :answer="answer" />
     <p max-w-130>
-      {{ t('intro-4') }}
+      {{ t(`example-details-${dictType}`) }}
     </p>
     <div h-1px w-10 border="b base" m4 />
 

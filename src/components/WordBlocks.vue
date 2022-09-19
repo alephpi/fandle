@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { parseAnswer, parseWord, parsedAnswer, testAnswer, answer as todayAnswer } from '~/state'
+import type { DictType } from '~/logic'
 import { WORD_LENGTH } from '~/logic'
 
 const props = withDefaults(
   defineProps<{
     word: string
+    mode: DictType
     revealed?: boolean
     answer?: string // served for WelcomePage.vue to show examples, not served for play.vue
     animate?: boolean
@@ -17,8 +19,8 @@ const props = withDefaults(
 const result = computed(() => {
   if (props.revealed) {
     return testAnswer(
-      parseWord(props.word),
-      props.answer ? parseAnswer(props.answer) : parsedAnswer.value,
+      parseWord(props.word, props.mode),
+      props.answer ? parseAnswer(props.answer, props.mode) : parsedAnswer.value,
     )
   }
   return []
@@ -40,8 +42,8 @@ watchEffect(() => {
 <!-- eslint-disable vue/html-closing-bracket-newline -->
 <template>
   <div flex>
-    <div v-for="c, i in parseWord(word.padEnd(WORD_LENGTH, ' '), answer || todayAnswer.word)" :key="i" w-20 h-20 m1
-      class="tile" :class="[flip ? 'revealed' : '']">
+    <div v-for="c, i in parseWord(word.padEnd(WORD_LENGTH, ' '), mode, answer || todayAnswer.word)" :key="i" w-20 h-20
+      m1 class="tile" :class="[flip ? 'revealed' : '']">
       <template v-if="animate">
         <CharBlock class="front" :char="c" :active="active"
           :style="{ transitionDelay: `${i * (300 + Math.random() * 50)}ms` }" />

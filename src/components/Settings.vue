@@ -42,19 +42,17 @@ function switchDict(dict: string) {
         </button>
       </div>
     </div>
-    <!-- <div flex="~ center wrap">
-      辞典
-      <div class="i-fluent-book-24-regular" />
-      <div square-btn m2>
-        <button :class=" dictType === 'mandarin' ? 'text-primary' : 'op50'" @click="switchDict('mandarin')">
+    <div flex="~ center wrap">
+      <div square-btn m3>
+        <button :class=" dictType === 'mandarin' ? 'text-primary' : 'op51'" @click="switchDict('mandarin')">
           普通话
         </button>
-        <div w-1px h-4 border="r base" />
-        <button :class="dictType === 'cantonese' ? 'text-primary' : 'op50'" @click="switchDict('cantonese')">
+        <div w0px h-4 border="r base" />
+        <button :class="dictType === 'cantonese' ? 'text-primary' : 'op51'" @click="switchDict('cantonese')">
           粤语
         </button>
       </div>
-    </div> -->
+    </div>
 
     <!-- Don't display in welcome page -->
     <template v-if="!lite">
