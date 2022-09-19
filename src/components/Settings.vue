@@ -1,61 +1,10 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router'
 import { dictType, meta, pinyinStyle, useCheckAssist, useNoHint } from '~/storage'
-import { locale, t } from '~/i18n'
-
-defineProps<{
-  lite?: boolean
-}>()
-
-const router = useRouter()
-function switchDict(dict: string) {
-  switch (dict) {
-    case 'mandarin':
-      dictType.value = 'mandarin'
-      break
-    case 'cantonese':
-      dictType.value = 'cantonese'
-      break
-    default:
-      dictType.value = 'mandarin'
-      break
-  }
-  // router.replace({
-  //   name: '/',
-  //   query: {
-  //     dict: dictType.value,
-  //   },
-  // })
-}
 </script>
 
 <template>
   <div flex="~ col">
     <div flex="~ center wrap">
-      <div square-btn m2>
-        <button :class="locale === 'hans' ? 'text-primary' : 'op50'" @click="locale = 'hans'">
-          简体
-        </button>
-        <div w-1px h-4 border="r base" />
-        <button :class="locale === 'hant' ? 'text-primary' : 'op50'" @click="locale = 'hant'">
-          繁體
-        </button>
-      </div>
-    </div>
-    <div flex="~ center wrap">
-      <div square-btn m3>
-        <button :class=" dictType === 'mandarin' ? 'text-primary' : 'op51'" @click="switchDict('mandarin')">
-          普通话
-        </button>
-        <div w0px h-4 border="r base" />
-        <button :class="dictType === 'cantonese' ? 'text-primary' : 'op51'" @click="switchDict('cantonese')">
-          粤语
-        </button>
-      </div>
-    </div>
-
-    <!-- Don't display in welcome page -->
-    <template v-if="!lite">
       <div v-if="dictType === 'mandarin'" flex="~ center wrap">
         拼音风格
         <div square-btn m2>
@@ -70,9 +19,13 @@ function switchDict(dict: string) {
           </button>
         </div>
       </div>
-    </template>
+      <div v-else>
+        暂无设置
+      </div>
+    </div>
+  </div>
 
-    <!-- <div v-if="!lite" flex="~ center wrap">
+  <!-- <div v-if="!lite" flex="~ center wrap">
       <button square-btn m2 :class="useNoHint ? 'text-primary' : 'op80'" @click="useNoHint = !useNoHint">
         {{ t('hard-mode') }}
         <div v-if="useNoHint" square-btn-mark />
@@ -82,5 +35,4 @@ function switchDict(dict: string) {
         <div v-if="useCheckAssist" square-btn-mark />
       </button>
     </div> -->
-  </div>
 </template>

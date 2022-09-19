@@ -2,7 +2,7 @@
 import AppNameAnimated from './AppNameAnimated.vue'
 import { isDark, showHelp, showPrivacyNotes, showVariants, useMask } from '~/state'
 import { dictType, initialized } from '~/storage'
-import { t } from '~/i18n'
+import { locale, t } from '~/i18n'
 
 function start() {
   showHelp.value = false
@@ -82,8 +82,28 @@ const answer = computed(
     </div>
 
     <div h-1px w-10 border="b base" m4 />
-
-    <Settings :lite="true" />
+    <div flex="~ center wrap">
+      <div square-btn m2>
+        <button :class="locale === 'hans' ? 'text-primary' : 'op50'" @click="locale = 'hans'">
+          简体
+        </button>
+        <div w-1px h-4 border="r base" />
+        <button :class="locale === 'hant' ? 'text-primary' : 'op50'" @click="locale = 'hant'">
+          繁體
+        </button>
+      </div>
+    </div>
+    <!-- <div flex="~ center wrap">
+        <div square-btn m3>
+          <button :class=" dictType === 'mandarin' ? 'text-primary' : 'op51'" @click="switchDict('mandarin')">
+            普通话
+          </button>
+          <div w0px h-4 border="r base" />
+          <button :class="dictType === 'cantonese' ? 'text-primary' : 'op51'" @click="switchDict('cantonese')">
+            粤语
+          </button>
+        </div>
+      </div> -->
 
     <div h-1px w-10 border="b base" m4 />
 

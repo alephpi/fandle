@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     Countdown: typeof import('./src/components/Countdown.vue')['default']
     Dashboard: typeof import('./src/components/Dashboard.vue')['default']
     DashboardItem: typeof import('./src/components/DashboardItem.vue')['default']
+    Dictionaries: typeof import('./src/components/Dictionaries.vue')['default']
     FailedPage: typeof import('./src/components/FailedPage.vue')['default']
     FeedbackLinks: typeof import('./src/components/FeedbackLinks.vue')['default']
     Hint: typeof import('./src/components/Hint.vue')['default']

@@ -18,10 +18,10 @@ export const pinyinFinalsTable = {
     single_group: ['a', 'o', 'e', 'i', 'u', 'v'],
     double_group: ['ai', 'ei', 'ao', 'ou', 'er', 'ia', 'ie', 'iao', 'iou', 'ua', 'uo', 'uai', 'uei', 've'],
     nasal_group: ['an', 'ang', 'en', 'eng', 'ong', 'in', 'ian', 'ing', 'iang', 'iong', 'uan', 'uen', 'uang', 'ueng', 'van', 'vn'],
-    zero_group: ['a', 'o', 'e', 'ai', 'ei', 'ao', 'ou', 'er', 'an', 'en', 'ang', 'eng', 'ong'],
-    i_group: ['i', 'ia', 'ie', 'iao', 'iou', 'ian', 'in', 'ing', 'iang', 'iong'],
-    u_group: ['u', 'ua', 'uo', 'uai', 'uei', 'uan', 'uen', 'uang', 'ueng'],
-    v_group: ['v', 've', 'van', 'vn'],
+    zero_group: ['a', 'o', 'e', 'i', 'u', 'v', 'ai', 'ei', 'ao', 'ou', 'er', 'an', 'en', 'ang', 'eng', 'ong'],
+    i_group: ['ia', 'ie', 'iao', 'iou', 'ian', 'in', 'ing', 'iang', 'iong'],
+    u_group: ['ua', 'uo', 'uai', 'uei', 'uan', 'uen', 'uang', 'ueng'],
+    v_group: ['ve', 'van', 'vn'],
 }
 
 // put gw kw before to first match them, otherwise it will be matched as g and k.

@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import Dictionaries from './Dictionaries.vue'
 import { isDark, showDashboard, showHelp, showSettings, useMask } from '~/state'
 import { gamesCount } from '~/storage'
 
 const toggleDark = useToggle(isDark)
 const toggleSettings = useToggle(showSettings)
 const toggleDashboard = useToggle(showDashboard)
-
 function openHelp() {
   showHelp.value = true
   useMask.value = false
@@ -27,6 +27,7 @@ function openHelp() {
         </button>
       </div>
       <div flex items-center>
+        <Dictionaries />
         <button icon-btn mx2 @click="toggleSettings()">
           <div i-carbon-settings />
         </button>

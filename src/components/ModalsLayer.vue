@@ -20,7 +20,7 @@ const lg = breakpoints.lg
     <CheatSheet />
   </Modal>
   <Modal v-model="showSettings" direction="top">
-    <Settings my6 />
+    <Settings />
   </Modal>
   <Modal v-model="showHint" direction="top">
     <Hint />
