@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { filterNonChineseChars } from '@hankit/tools'
-import CharBlock from './CharBlock.vue'
 import { answer, dayNo, isDev, isFailed, isFinished, showCheatSheet, showFailed, showHelp, showHint } from '~/state'
 import { markStart, meta, tries, useNoHint } from '~/storage'
 import { t } from '~/i18n'
-import { EXAMPLE_NUMBERS, TRIES_LIMIT, WORD_LENGTH, checkValidIdiom, getAnswerExamples, getAnswerStatistics } from '~/logic'
+import type { DictType } from '~/logic'
+import { EXAMPLE_NUMBERS, TRIES_LIMIT, WORD_LENGTH, checkValidIdiom } from '~/logic'
 
+// import PinyinFreqPerIdiomMandarin from '~/data/py_freq_per_idiom_mandarin.json'
+// import PinyinFreqPerIdiomCantonese from '~/data/py_freq_per_idiom_cantonese.json'
+const props = defineProps<{
+  mode: DictType
+}>()
 const el = ref<HTMLInputElement>()
 const input = ref('')
 const inputValue = ref('')
@@ -17,7 +22,7 @@ const isFinishedDelay = debouncedRef(isFinished, 800)
 function enter() {
   if (input.value.length !== WORD_LENGTH)
     return
-  if (!checkValidIdiom(input.value)) {
+  if (!checkValidIdiom(input.value, props.mode)) {
     showToast.value = true
     shake.value = true
     return false
@@ -61,12 +66,27 @@ watchEffect(() => {
     }, 1200)
   }
 })
+
+// function getAnswerInfo(ans: any, mode: DictType) {
+//   let freq: any
+//   let examples: any
+//   if (mode === 'cantonese') {
+//     freq = PinyinFreqPerIdiomCantonese[ans as keyof typeof PinyinFreqPerIdiomCantonese].freq
+//     examples = PinyinFreqPerIdiomCantonese[ans as keyof typeof PinyinFreqPerIdiomCantonese].examples.sort(() => 0.5 - Math.random()).slice(0, EXAMPLE_NUMBERS)
+//   }
+//   else {
+//     freq = PinyinFreqPerIdiomMandarin[ans as keyof typeof PinyinFreqPerIdiomMandarin].freq
+//     examples = PinyinFreqPerIdiomMandarin[ans as keyof typeof PinyinFreqPerIdiomMandarin].examples.sort(() => 0.5 - Math.random()).slice(0, EXAMPLE_NUMBERS)
+//   }
+//   return [freq, examples]
+// }
+// const [freq, examples] = getAnswerInfo(answer.value.word, props.mode)
 </script>
 
 <template>
   <div>
     <div flex="~ col" pt4 items-center>
-      <WordBlocks v-for="w, i of tries" :key="i" :word="w" :revealed="true" @click="focus()" />
+      <WordBlocks v-for="w, i of tries" :key="i" :word="w" :mode="mode" :revealed="true" @click="focus()" />
 
       <Transition name="fade-in">
         <template v-if="meta.answer">
@@ -76,18 +96,18 @@ watchEffect(() => {
             </div>
             {{ answer.word }}
             <div font-serif p2>
-              词库中有 {{ getAnswerStatistics(answer.word) }} 个成语包含此音，例如
+              词库中有 {{ freq }} 个成语包含此音，例如
             </div>
             <ul>
               <li v-for="i in EXAMPLE_NUMBERS" :key="`example${i}`" list-none font-serif p1>
-                {{ getAnswerExamples(answer.word)[i - 1] }}
+                {{ examples[i - 1] }}
               </li>
             </ul>
           </div>
         </template>
       </Transition>
 
-      <WordBlocks v-if="!isFinished" :class="{ shake }" :word="input" :active="true" @click="focus()" />
+      <WordBlocks v-if="!isFinished" :class="{ shake }" :mode="mode" :word="input" :active="true" @click="focus()" />
 
       <div mt-1 />
 

@@ -1,8 +1,7 @@
 import { breakpointsTailwind } from '@vueuse/core'
-import { parseIsolatedEntityName } from 'typescript'
-import type { ParsedChar } from './logic'
-import { MatchType, START_DATE, TRIES_LIMIT, WORD_LENGTH, parseAnswer as _parseAnswer, parseWord as _parseWord, testAnswer as _testAnswer, checkPass, getHint, isDstObserved, numberToHanzi } from './logic'
-import { meta, pinyinStyle, tries } from './storage'
+import type { DictType, ParsedChar } from './logic'
+import { START_DATE, TRIES_LIMIT, parseAnswer as _parseAnswer, parseWord as _parseWord, testAnswer as _testAnswer, checkPass, getHint, isDstObserved, numberToHanzi } from './logic'
+import { dictType, meta, pinyinStyle, tries } from './storage'
 import { getAnswerOfDay } from './answers'
 
 export const isIOS = /iPad|iPhone|iPod/.test(navigator.platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
@@ -39,23 +38,30 @@ export const answer = computed(() =>
       word: params.get('word')!,
       hint: getHint(params.get('word')!),
     }
-    : getAnswerOfDay(dayNo.value),
+    : getAnswerOfDay(dayNo.value, dictType.value),
 )
 
 export const hint = computed(() => answer.value.hint)
 // need to restore the strict spelling, i.e. u after j q x y should be v, o after b p m f should be uo.
-export const parsedAnswer = computed(() => parseAnswer(answer.value.word.replace(/^(y|j|q|x)u([a-z]*[0-9]?)$/g, '$1v$2').replace(/^(b|p|m|f)o([0-9]?)$/g, '$1uo$2')))
+export const parsedAnswer = computed(() => parseAnswer(answer.value.word, dictType.value))
 
-export const isPassed = computed(() => meta.value.passed || (tries.value.length && checkPass(testAnswer(parseWord(tries.value[tries.value.length - 1])))))
+// if not cached, checkPass the last try, isPassed is defined and catched by watchEffect in init.ts, hence cached by meta.
+// meta.value.passed is computed from cache, so if refresh page, isPassed is set to meta.value.passed.
+export const isPassed = computed(() => meta.value.passed || (tries.value.length && checkPass(testAnswer(parseWord(tries.value[tries.value.length - 1], dictType.value)))))
+// failed only when not passed and tries exceeds limit, notice game can continue when limit is exceeded so can still passed.
 export const isFailed = computed(() => !isPassed.value && tries.value.length >= TRIES_LIMIT)
+// isFinished is Passed or is failed(reveal the answer)
 export const isFinished = computed(() => isPassed.value || meta.value.answer)
 
-export function parseAnswer(answer: string, pyStyle = pinyinStyle.value) {
-  return _parseAnswer(answer, pyStyle)
+export function parseAnswer(answer: string, mode: DictType, pyStyle = pinyinStyle.value) {
+  if (mode === 'cantonese')
+    return _parseAnswer(answer, mode)
+  else
+    return _parseAnswer(answer.replace(/^(y|j|q|x)u([a-z]*[0-9]?)$/g, '$1v$2').replace(/^(b|p|m|f)o([0-9]?)$/g, '$1uo$2'), mode, pyStyle)
 }
 
-export function parseWord(word: string, _ans = answer.value.word, pyStyle = pinyinStyle.value) {
-  return _parseWord(word, _ans, pyStyle)
+export function parseWord(word: string, mode: DictType, _ans = answer.value.word, pyStyle = pinyinStyle.value) {
+  return _parseWord(word, mode, _ans, pyStyle)
 }
 
 export function testAnswer(word: ParsedChar[], ans = parsedAnswer.value) {
@@ -63,7 +69,7 @@ export function testAnswer(word: ParsedChar[], ans = parsedAnswer.value) {
 }
 
 export const parsedTries = computed(() => tries.value.map((i) => {
-  const word = parseWord(i)
+  const word = parseWord(i, dictType.value)
   const result = testAnswer(word)
   return {
     word,

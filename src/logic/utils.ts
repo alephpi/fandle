@@ -1,36 +1,44 @@
-import seedrandom from 'seedrandom'
-import { pinyinInitials, pinyinInitialsStrict } from '@hankit/tools'
-import PinyinFreqPerIdiom from '../data/py_freq_per_idiom.json'
-import type { MatchResult, ParsedChar, ParsedPinyin, PinyinStyle } from './types'
+import { pinyinInitials, pinyinInitialsCantonese, pinyinInitialsStrict } from '@hankit/tools'
+import type { DictType, MatchResult, ParsedChar, ParsedPinyin, PinyinStyle } from './types'
 import { getPinyin } from './idioms'
 import { EXAMPLE_NUMBERS } from './constants'
 
-export function parsePinyin(pinyin: string, pyStyle = 'plain') {
+export function parsePinyin(pinyin: string, mode: DictType, pyStyle?: PinyinStyle) {
   const tone = pinyin.match(/[\d]$/)?.[0] || ''
   const rawpinyin = pinyin
   if (tone)
     pinyin = pinyin.slice(0, -tone.length).trim()
 
   let parts: string[] = []
-
-  if (pyStyle === 'plain') {
+  if (mode === 'cantonese') {
     if (pinyin) {
       let rest = pinyin
-      const one = pinyinInitials.find(i => rest.startsWith(i))
+      const one = pinyinInitialsCantonese.find(i => rest.startsWith(i))
       if (one)
         rest = rest.slice(one.length)
       parts = [one, rest].filter(Boolean) as string[]
     }
   }
-  // otherwise equal to strict
   else {
-    if (pinyin) {
-      let rest = pinyin
-      const one = pinyinInitialsStrict.find(i => rest.startsWith(i))
-      if (one)
-        rest = rest.slice(one.length)
-      rest = rest.replace(/yv/, 'v').replace(/yi?/, 'i').replace(/wu?/, 'u').replace(/iu/, 'iou').replace(/ui/, 'uei').replace(/un/, 'uen')
-      parts = [one, rest].filter(Boolean) as string[]
+    if (pyStyle === 'plain') {
+      if (pinyin) {
+        let rest = pinyin
+        const one = pinyinInitials.find(i => rest.startsWith(i))
+        if (one)
+          rest = rest.slice(one.length)
+        parts = [one, rest].filter(Boolean) as string[]
+      }
+    }
+    // otherwise equal to strict
+    else {
+      if (pinyin) {
+        let rest = pinyin
+        const one = pinyinInitialsStrict.find(i => rest.startsWith(i))
+        if (one)
+          rest = rest.slice(one.length)
+        rest = rest.replace(/yv/, 'v').replace(/yi?/, 'i').replace(/wu?/, 'u').replace(/iu/, 'iou').replace(/ui/, 'uei').replace(/un/, 'uen')
+        parts = [one, rest].filter(Boolean) as string[]
+      }
     }
   }
   // 现在始终有拼音了，因为我提供了总表
@@ -51,27 +59,26 @@ export function parsePinyin(pinyin: string, pyStyle = 'plain') {
   }
 }
 
-function parseChar(char: string, pinyin: string, pyStyle?: PinyinStyle): ParsedChar {
+function parseChar(char: string, pinyin: string, mode: DictType, pyStyle?: PinyinStyle): ParsedChar {
   return {
     char,
-    parsedPinyin: parsePinyin(pinyin, pyStyle),
+    parsedPinyin: parsePinyin(pinyin, mode, pyStyle),
   }
 }
 
-export function parseWord(word: string, answer?: string, pyStyle?: PinyinStyle) {
-  const pinyins = getPinyin(word)
+export function parseWord(word: string, mode: DictType, answer?: string, pyStyle?: PinyinStyle) {
+  const pinyins = getPinyin(word, mode)
   const chars = Array.from(word)
-  // const answerPinyin = answer ? getPinyin(answer) : undefined
 
   return chars.map((char, i): ParsedChar => {
     // this '' is in case that word is empty (when rendering a new blank word block)
     const pinyin = pinyins[i] || ''
-    return parseChar(char, pinyin, pyStyle)
+    return parseChar(char, pinyin, mode, pyStyle)
   })
 }
 
-export function parseAnswer(answer: string, pyStyle?: PinyinStyle) {
-  return parsePinyin(answer, pyStyle)
+export function parseAnswer(answer: string, mode: DictType, pyStyle?: PinyinStyle) {
+  return parsePinyin(answer, mode, pyStyle)
 }
 
 export function testAnswer(input: ParsedChar[], answer: ParsedPinyin) {
@@ -106,14 +113,6 @@ export function getHint(word: string) {
   return word.slice(-1)
 }
 
-export function getAnswerStatistics(answer: keyof typeof PinyinFreqPerIdiom) {
-  return PinyinFreqPerIdiom[answer].freq
-}
-
-export function getAnswerExamples(answer: keyof typeof PinyinFreqPerIdiom) {
-  const examples = PinyinFreqPerIdiom[answer].examples
-  return examples.sort(() => 0.5 - Math.random()).slice(0, EXAMPLE_NUMBERS)
-}
 const numberChar = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
 const tens = ['', '十', '百', '千']
 

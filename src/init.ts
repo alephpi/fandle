@@ -1,10 +1,13 @@
 import { initialized, markEnd, markStart, meta, pauseTimer } from './storage'
-import { answer, dayNo, daySince, isDev, isFinished, isPassed, showCheatSheet, showHelp } from './state'
+import { dayNo, daySince, isDev, isFinished, isPassed, showCheatSheet, showHelp } from './state'
 import { t } from './i18n'
 // import { sendAnalytics } from './analytics'
-import { answers } from './answers/list'
+import { getAnswerOfDay } from './answers'
+import { answers as answersMandarin } from './answers/list_mandarin'
+import { answers as answersCantonese } from './answers/list_cantonese'
 import { START_DATE } from './logic/constants'
 import { tryFixAnswer } from './logic/answer-fix'
+import type { DictType } from './logic'
 
 useTitle(computed(() => `${t('name')} - ${t('description')}`))
 
@@ -59,18 +62,28 @@ nextTick(() => {
 
   tryFixAnswer(dayNo.value)
 })
-
-if (isDev || import.meta.hot) {
+function showAnswerInfo(mode: DictType) {
+  let answerlist: string[][]
+  const answer = getAnswerOfDay(dayNo.value, mode)
+  if (mode === 'cantonese')
+    answerlist = answersCantonese
+  else
+    answerlist = answersMandarin
   const theDate = new Date(+START_DATE + dayNo.value * 86400000)
   // eslint-disable-next-line no-console
-  console.log(`D${dayNo.value}`, theDate.toLocaleDateString(), answer.value.word, answer.value.hint)
-}
-
-if (import.meta.hot) {
+  console.log(`D${dayNo.value}`, theDate.toLocaleDateString(), answer.word, answer.hint)
   // eslint-disable-next-line no-console
-  console.log(`${answers.length} days prepared`)
+  console.log(`${answerlist.length} days prepared`)
   // eslint-disable-next-line no-console
-  console.log(`${answers.length - dayNo.value} days left`)
-  if ((answers.length - daySince.value) < 10)
+  console.log(`${answerlist.length - dayNo.value} days left`)
+  if ((answerlist.length - daySince.value) < 10)
     throw new Error('Not enough days left!')
 }
+
+if (isDev || import.meta.hot) {
+  if (import.meta.hot) {
+    showAnswerInfo('mandarin')
+    showAnswerInfo('cantonese')
+  }
+}
+

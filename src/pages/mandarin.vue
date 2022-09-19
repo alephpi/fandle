@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { answer, dayNo, daySince, isDev } from '~/state'
 import { DAYS_PLAY_BACK } from '~/logic/constants'
+import { dictType } from '~/storage'
+dictType.value = 'mandarin'
 </script>
 
 <template>
