@@ -40,7 +40,7 @@ const lg = breakpoints.lg
   <Modal v-model="showVariants" direction="top">
     <VariantLinks />
   </Modal>
-  <Modal v-model="showPrivacyNotes" direction="top">
+  <!-- <Modal v-model="showPrivacyNotes" direction="top">
     <PrivacyNotes />
-  </Modal>
+  </Modal> -->
 </template>

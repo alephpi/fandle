@@ -8,14 +8,21 @@ export const legacyTries = useStorage<Record<DictType, Record<number, string[]>>
 // cache all past meta data indexed by day number
 export const history = useStorage<Record<DictType, Record<number, TriesMeta>>>('handle-tries-meta', { mandarin: {}, cantonese: {} })
 // cache if it is the first time or not playing the game
-export const initialized = useStorage('handle-initialized', false)
+export const initialized = useStorage('fandle-initialized', false)
 export const dictType = useStorage<DictType>('fandle-dict-type', 'mandarin')
 export const pinyinStyle = useStorage<PinyinStyle>('fandle-pinyin-style', 'plain')
-export const useNoHint = useStorage('handle-hard-mode', false)
-export const useCheckAssist = useStorage('handle-check-assist', false)
-export const acceptCollecting = useStorage('handle-accept-collecting', true)
+export const useNoHint = useStorage('fandle-hard-mode', false)
+export const useCheckAssist = useStorage('fandle-check-assist', false)
+// export const acceptCollecting = useStorage('fandle-accept-collecting', true)
 
 // console.log(history.value)
+export function breakingUpdate() {
+  if (history.value[dictType.value] === undefined) {
+    history.value = null
+    legacyTries.value = null
+  }
+}
+breakingUpdate()
 // compute and cached today's meta data
 export const meta = computed<TriesMeta>({
   get() {

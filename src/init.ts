@@ -1,4 +1,4 @@
-import { initialized, markEnd, markStart, meta, pauseTimer } from './storage'
+import { breakingUpdate, initialized, markEnd, markStart, meta, pauseTimer } from './storage'
 import { dayNo, daySince, isDev, isFinished, isPassed, showCheatSheet, showHelp } from './state'
 import { t } from './i18n'
 // import { sendAnalytics } from './analytics'
