@@ -1,7 +1,12 @@
 import { pinyinInitials, pinyinInitialsCantonese, pinyinInitialsStrict } from '@hankit/tools'
+import py_freq_cantonese from '../data/py_freq_per_idiom_cantonese.json'
+import py_freq_mandarin from '../data/py_freq_per_idiom_mandarin.json'
 import type { DictType, MatchResult, ParsedChar, ParsedPinyin, PinyinStyle } from './types'
 import { getPinyin } from './idioms'
 import { EXAMPLE_NUMBERS } from './constants'
+// console.log(typeof py_freq_cantonese)
+// const py_freq_cantonese = py_freq_cantonese_raw as Record<string, Record<number, string[]>>
+// const py_freq_mandarin = py_freq_mandarin_raw as Record<string, Record<number, string[]>>
 
 export function parsePinyin(pinyin: string, mode: DictType, pyStyle?: PinyinStyle) {
   const tone = pinyin.match(/[\d]$/)?.[0] || ''
@@ -126,6 +131,13 @@ export function numberToHanzi(number: number) {
   return str
     .replace(/零+/, '零')
     .replace(/(.)零$/, '$1')
+}
+
+export function getAnswerInfo(answer: any, mode: DictType) {
+  if (mode === 'cantonese')
+    return [py_freq_cantonese[answer as keyof typeof py_freq_cantonese].freq, py_freq_cantonese[answer as keyof typeof py_freq_cantonese].examples.sort(() => 0.5 - Math.random()).slice(0, EXAMPLE_NUMBERS)]
+  else
+    return [py_freq_mandarin[answer as keyof typeof py_freq_mandarin].freq, py_freq_mandarin[answer as keyof typeof py_freq_mandarin].examples.sort(() => 0.5 - Math.random()).slice(0, EXAMPLE_NUMBERS)]
 }
 
 /**

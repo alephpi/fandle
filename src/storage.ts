@@ -76,7 +76,7 @@ export function pauseTimer() {
 export const gamesCount = computed(() => Object.values(history.value[dictType.value]).filter(m => m.passed || m.answer || m.failed).length)
 export const passedTries = computed(() => Object.values(history.value[dictType.value]).filter(m => m.passed))
 export const passedCount = computed(() => passedTries.value.length)
-// export const noHintPassedCount = computed(() => Object.values(history.value).filter(m => m.passed && !m.hint).length)
+export const noHintPassedCount = computed(() => Object.values(history.value[dictType.value]).filter(m => m.passed && !m.hintType).length)
 export const historyTriesCount = computed(() => Object.values(history.value[dictType.value]).filter(m => m.passed || m.answer || m.failed).map(m => m.tries?.length || 0).reduce((a, b) => a + b, 0))
 
 export const triesCount = computed(() => tries.value.length)

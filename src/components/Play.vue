@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { filterNonChineseChars } from '@hankit/tools'
-import { answer, dayNo, isDev, isFailed, isFinished, showCheatSheet, showFailed, showHelp, showHint } from '~/state'
+import { answer, dayNo, isDev, isFailed, isFinished, isPassed, showCheatSheet, showFailed, showHelp, showHint } from '~/state'
 import { markStart, meta, tries, useNoHint } from '~/storage'
 import { t } from '~/i18n'
 import type { DictType } from '~/logic'
-import { EXAMPLE_NUMBERS, TRIES_LIMIT, WORD_LENGTH, checkValidIdiom } from '~/logic'
+import { EXAMPLE_NUMBERS, TRIES_LIMIT, WORD_LENGTH, checkValidIdiom, getAnswerInfo } from '~/logic'
 
-// import PinyinFreqPerIdiomMandarin from '~/data/py_freq_per_idiom_mandarin.json'
-// import PinyinFreqPerIdiomCantonese from '~/data/py_freq_per_idiom_cantonese.json'
 const props = defineProps<{
   mode: DictType
 }>()
@@ -67,20 +65,8 @@ watchEffect(() => {
   }
 })
 
-// function getAnswerInfo(ans: any, mode: DictType) {
-//   let freq: any
-//   let examples: any
-//   if (mode === 'cantonese') {
-//     freq = PinyinFreqPerIdiomCantonese[ans as keyof typeof PinyinFreqPerIdiomCantonese].freq
-//     examples = PinyinFreqPerIdiomCantonese[ans as keyof typeof PinyinFreqPerIdiomCantonese].examples.sort(() => 0.5 - Math.random()).slice(0, EXAMPLE_NUMBERS)
-//   }
-//   else {
-//     freq = PinyinFreqPerIdiomMandarin[ans as keyof typeof PinyinFreqPerIdiomMandarin].freq
-//     examples = PinyinFreqPerIdiomMandarin[ans as keyof typeof PinyinFreqPerIdiomMandarin].examples.sort(() => 0.5 - Math.random()).slice(0, EXAMPLE_NUMBERS)
-//   }
-//   return [freq, examples]
-// }
-// const [freq, examples] = getAnswerInfo(answer.value.word, props.mode)
+const [freq, examples] = getAnswerInfo(answer.value.word, props.mode)
+// const [freq, examples] = [0, '']
 </script>
 
 <template>
@@ -146,7 +132,9 @@ watchEffect(() => {
       </Transition>
       <Transition name="fade-in">
         <div v-if="isFinishedDelay && isFinished">
-          <ResultFooter />
+          <div v-if="isPassed">
+            <ResultFooter />
+          </div>
           <Countdown />
         </div>
       </Transition>

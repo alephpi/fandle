@@ -24,8 +24,8 @@ export const pinyinFinalsTable = {
     v_group: ['ve', 'van', 'vn'],
 }
 
-// put gw kw before to first match them, otherwise it will be matched as g and k.
-export const pinyinInitialsCantonese = 'gw kw b p m f d t n l g k ng h z c s j w'.split(' ')
+// put gw kw ng before to first match them, otherwise it will be matched as g, k, n.
+export const pinyinInitialsCantonese = 'gw kw ng b p m f d t n l g k h z c s j w'.split(' ')
 export const pinyinFinalsCantonese = 'aa aai aau aam aan aang aap aat aak ai au am an ang ap at ak u ui un ung ut uk o oi on ong ot ok e ei eng ek i iu im in ing ip it ik yu yun yut eoi eon eot oe oeng oek'.split(' ')
 
 export const pinyinInitialsTableCantonese = {

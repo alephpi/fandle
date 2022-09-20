@@ -2,8 +2,7 @@
 import DashboardItem from './DashboardItem.vue'
 import { t } from '~/i18n'
 import { showDashboard } from '~/state'
-import { averageDurations, gamesCount, history, historyTriesCount, noHintPassedCount, passedCount, passedTries } from '~/storage'
-import { checkValidIdiom } from '~/logic'
+import { averageDurations, dictType, gamesCount, history, historyTriesCount, noHintPassedCount, passedCount, passedTries } from '~/storage'
 
 const triesMap = computed(() => {
   const map = new Map<number, number>()
@@ -38,8 +37,7 @@ function close() {
   showDashboard.value = false
 }
 
-const allWords = computed(() => Array.from(new Set(Object.values(history.value).flatMap(i => i.tries).filter(Boolean) as string[])))
-const validWords = computed(() => allWords.value.filter(i => checkValidIdiom(i, true)))
+const allWords = computed(() => Array.from(new Set(Object.values(history.value[dictType.value]).flatMap(i => i.tries).filter(Boolean) as string[])))
 </script>
 
 <template>
@@ -72,6 +70,7 @@ const validWords = computed(() => allWords.value.filter(i => checkValidIdiom(i, 
     <div flex="~ wrap gap-4" justify-center min-w-100px py2>
       <DashboardItem :value="gamesCount" :text="t('games-count')" />
       <DashboardItem :value="passedCount" :text="t('win-count')" />
+      <DashboardItem :value="noHintPassedCount" :text="t('win-no-hint-count')" />
       <DashboardItem :value="`${Math.round(passedCount / gamesCount * 100)}%`" :text="t('win-rate')" />
     </div>
     <div flex="~ wrap gap-4" justify-center min-w-100px py2>
