@@ -5,10 +5,10 @@ const show = ref(false)
 </script>
 
 <template>
-    <button icon-btn mx2 @click="show = true" @mouseover="show = true">
-        <div i-carbon-book />
+    <button icon-btn mx2 @click="show = !show">
+        <div i-bx-book />
     </button>
-    <div v-if="show === true" ease-out class="shop-memu-item" @mouseover="show = true" @mouseleave="show = false">
+    <div v-if="show === true" ease-out class="shop-memu-item">
         <div v-for="d in dictList" :key="`dict-${d}`">
             <router-link :to="`/${d}`" mx2 my1 text-base hover:text-primary @click="show = false">
                 {{ t(d) }}

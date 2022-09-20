@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.2",
+    "@iconify-json/bx": "^1.1.4",
     "@iconify-json/carbon": "^1.1.7",
     "@iconify-json/ep": "^1.1.6",
     "@iconify-json/mdi": "^1.1.29",
@@ -53,8 +54,8 @@
     "unplugin-auto-import": "^0.11.0",
     "unplugin-vue-components": "^0.22.0",
     "vite": "^3.0.4",
-    "vite-plugin-pages": "^0.26.0",
     "vite-node": "^0.21.0",
+    "vite-plugin-pages": "^0.26.0",
     "vitest": "^0.21.0"
   }
 }
