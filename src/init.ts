@@ -81,9 +81,7 @@ function showAnswerInfo(mode: DictType) {
 }
 
 if (isDev || import.meta.hot) {
-  if (import.meta.hot) {
+  if (import.meta.hot)
     showAnswerInfo('mandarin')
-    showAnswerInfo('cantonese')
-  }
+  // showAnswerInfo('cantonese')
 }
-
