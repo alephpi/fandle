@@ -1,20 +1,26 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { NDropdown } from 'naive-ui'
 import { t } from '~/i18n'
 const dictList = ['mandarin', 'cantonese']
-const show = ref(false)
+const router = useRouter()
+const options = dictList.map(d => ({
+  label: t(d),
+  key: `dict-${d}`,
+  props: {
+    onClick: () => {
+      router.push(`/${d}`)
+    },
+  },
+}))
 </script>
 
 <template>
-    <button icon-btn mx2 @click="show = !show">
-        <div i-bx-book />
+  <n-dropdown trigger="hover" :options="options">
+    <button icon-btn mx2>
+      <div i-bx-book />
     </button>
-    <div v-if="show === true" ease-out class="shop-memu-item">
-        <div v-for="d in dictList" :key="`dict-${d}`">
-            <router-link :to="`/${d}`" mx2 my1 text-base hover:text-primary @click="show = false">
-                {{ t(d) }}
-            </router-link>
-        </div>
-    </div>
+  </n-dropdown>
 </template>
 
 <style scoped>
