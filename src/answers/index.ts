@@ -7,13 +7,13 @@ export function getAnswerOfDay(day: number, mode: DictType) {
   let [word, hint] = ['', '']
   const seed = seedrandom(`day-${day}`)()
   if (mode === 'cantonese') {
-    if (day > answersCantonese.length)
+    if (day >= answersCantonese.length)
       [word = '', hint = ''] = answersCantonese[Math.floor(seed * answersCantonese.length)] || []
     else
       [word = '', hint = ''] = answersCantonese[day] || []
   }
   else {
-    if (day > answersMandarin.length)
+    if (day >= answersMandarin.length)
       [word = '', hint = ''] = answersMandarin[Math.floor(seed * answersMandarin.length)] || []
     else
       [word = '', hint = ''] = answersMandarin[day] || []
