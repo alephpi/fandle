@@ -17,9 +17,13 @@ function close() {
       </button>
     </div>
 
-    <p text-xl font-serif mb8>
+    <p text-xl font-serif mb3>
       <b>{{ t('cheatsheet') }}</b>
     </p>
+    <p text-sm font-serif text-gray mb3>
+      <b>{{ t('cheatsheet-hint') }}</b>
+    </p>
+
     <!-- Mandarin -->
     <div v-if="dictType === 'mandarin'">
       <!-- Pinyin plain style -->
