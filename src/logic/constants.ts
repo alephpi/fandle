@@ -1,5 +1,5 @@
 export const WORD_LENGTH = 4
-export const TRIES_LIMIT = 7
+export const TRIES_LIMIT = 10
 export const EXAMPLE_NUMBERS = 5
 // monthIndex is not month!
 export const START_DATE = new Date(2022, 8, 0)
