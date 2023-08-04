@@ -96,9 +96,9 @@ function getHintOnFinalMandarin() {
   if (pinyinFinalsTable.single_group.includes(answer_pinyin._yunmu))
     hintOnFinal.value = '韵母是单元音'
   else if (pinyinFinalsTable.double_group.includes(answer_pinyin._yunmu))
-    hintOnFinal.value = '韵母是复元音'
+    hintOnFinal.value = '韵母是双元音'
   else if (pinyinFinalsTable.nasal_group.includes(answer_pinyin._yunmu))
-    hintOnFinal.value = '韵母是鼻元音'
+    hintOnFinal.value = '韵母是鼻韵母'
   else
     hintOnFinal.value = '要是你看到这句话，说明有bug'
 }
@@ -120,9 +120,9 @@ function getHintOnInitialCantonese() {
 
 function getHintOnFinalCantonese() {
   if (['p', 't', 'k'].includes(answer_pinyin._shengmu.slice(-1)))
-    hintOnFinal.value = '韵尾是入声'
+    hintOnFinal.value = '韵尾是p,t,k'
   else if (['m', 'n', 'g'].includes(answer_pinyin._shengmu.slice(-1)))
-    hintOnFinal.value = '韵尾是鼻音'
+    hintOnFinal.value = '韵尾是m,n,g'
   else
     hintOnFinal.value = '无韵尾'
 }
